@@ -4,7 +4,7 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 1000 },
             debug: false
         }
     },
@@ -49,7 +49,7 @@ function preload() {
 
 function create() {
     //  A simple background for our game
-    image0 = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
+    background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
@@ -113,18 +113,9 @@ function update() {
 
     if (enemyNeeded == 5) {
         enemyNeeded = 0;
-        var attacker = this.physics.add.sprite(2100, 850, 'attacker').setScale(2, 1.5);
-        attacker.anims.play('attacker', true);
-        this.physics.add.collider(attacker, platforms);
-        attacker.setVelocityX(-800);
-        this.physics.add.overlap(zombie, attacker, function () {
-            var last = zombies.getLast(true);
-            attacker.disableBody(true, true);
-            last.disableBody(true, true);
-            newZombiePlace = newZombiePlace - 40;
-
-        }, null, this);
+        addAttacker(this);
     }
+    
     if (counter == 80) {
         counter = 0;
 
@@ -132,34 +123,24 @@ function update() {
             case 0://boy
                 addVictim(this, 'boy',1.1);
                 break;
+
             case 1://woman
             addVictim(this, 'woman',1);
                 break;
 
             case 2:
-                var attacker = this.physics.add.sprite(2100, 850, 'attacker').setScale(2, 1.5);
-                attacker.anims.play('attacker', true);
-                this.physics.add.collider(attacker, platforms);
-                attacker.setVelocityX(-800);
-                this.physics.add.overlap(zombie, attacker, function () {
-                    var last = zombies.getLast(true);
-                    attacker.disableBody(true, true);
-                    last.disableBody(true, true);
-                    newZombiePlace = newZombiePlace - 40;
-
-                }, null, this);
-
+                addAttacker(this);
                 break;
         }
 
     }
 
 
-    image0.tilePositionX = iter * 300;
+    background.tilePositionX = iter * 300;
     iter += 0.03;
 
 
-    var speed = 400;
+    var speed = 650;
     zombies.children.iterate(function (child) {
         if ((cursors.up.isDown || cursors.space.isDown) && child.body.touching.down) {
             child.setVelocityY(-speed);
@@ -172,7 +153,7 @@ function update() {
 
         }
 
-        speed = speed - 15;
+        speed = speed - 5;
 
 
     }
@@ -180,6 +161,27 @@ function update() {
 
 
 
+
+    function addAttacker(game) {
+        var attacker = game.physics.add.sprite(2100, 850, 'attacker').setScale(2, 1.5);
+        attacker.anims.play('attacker', true);
+        game.physics.add.collider(attacker, platforms);
+        attacker.setVelocityX(-800);
+        game.physics.add.overlap(zombies, attacker, function () {
+            var last = zombies.getLast(true);
+            attacker.disableBody(true, true);
+            last.disableBody(true, true);
+            zombies.remove(last);
+            newZombiePlace = newZombiePlace - 40;
+            console.log(zombies.getLength());
+            
+            if (zombies.getLength()==0) {
+                window.location.assign("game_over.html")
+                
+            }
+        }, null, game);
+        return attacker;
+    }
 
     function addVictim(game, type,scale) {
         var victim = game.physics.add.sprite(2100, 880, type).setScale(scale);
