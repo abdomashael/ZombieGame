@@ -8,7 +8,9 @@ var cursors;
 var score = 0;
 var gameOver = false;
 var scoreText;
+var zombieCountText;
 var enemyNeeded = 0;
+var zombieCount=0;
 
 
 var GameScene = new Phaser.Class({
@@ -23,6 +25,7 @@ var GameScene = new Phaser.Class({
         },
     preload: function () {
         this.load.image('sky', 'assets/sky.png');
+        this.load.image('face', 'assets/face.png');
         this.load.image('ground', 'assets/platform.png');
         this.load.spritesheet('zombie', 'assets/zombie.png', { frameWidth: 70, frameHeight: 84 });
         this.load.spritesheet('boy', 'assets/boy.png', { frameWidth: 70, frameHeight: 116 });
@@ -34,6 +37,7 @@ var GameScene = new Phaser.Class({
 
     create: function () {
         
+
         //  A simple background for our game
         background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
 
@@ -44,17 +48,19 @@ var GameScene = new Phaser.Class({
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         platforms.create(960, 980, 'ground');
 
-        //  Now let's create some ledges
+        this.add.image(960,50,'face');
 
         // The zombie and its settings
 
         zombies = this.physics.add.group();
 
 
-        zombie = this.physics.add.sprite(300, 450, 'zombie');
+        zombie = this.physics.add.sprite(400, 450, 'zombie');
 
         zombie.setScale(2);
         zombies.add(zombie);
+
+        game.physics.add.overlap(zombie,attacker,attackerOverlap,null,game);
 
         //  Our zombie animations, turning, walking left and walking right.
 
@@ -73,6 +79,7 @@ var GameScene = new Phaser.Class({
 
         //  The score
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '43px', fill: '#ffff' });
+        zombieCountText = this.add.text(1020, 50, '1', { fontSize: '43px', fill: '#ffff' });
 
         //  Collide the zombie and the victims with the platforms
         this.physics.add.collider(zombie, platforms);
@@ -97,7 +104,7 @@ var GameScene = new Phaser.Class({
         if (counter == 80) {
             counter = 0;
 
-            switch (getRandomInt(3)) {
+            switch (getRandomInt(4)) {
                 case 0://boy
                     addVictim(this, 'boy', 1.1);
                     break;
@@ -107,6 +114,7 @@ var GameScene = new Phaser.Class({
                     break;
 
                 case 2:
+                case 3:
                     addAttacker(this);
                     break;
             }
@@ -146,18 +154,6 @@ var GameScene = new Phaser.Class({
             zombies.children.iterate(function (childZombie) {
                 game.physics.add.overlap(childZombie,attacker,attackerOverlap,null,game);
             });
-            
-            function attackerOverlap(childZombie,attacker) {
-                newZombiePlace = childZombie.x;
-                attacker.disableBody(true, true);
-                childZombie.disableBody(true, true);
-                zombies.remove(childZombie);
-                
-                if (zombies.getLength() == 0) {
-                    this.scene.start('gameOverScene');
-
-                }
-            }
         }
 
         function addVictim(game, type, scale) {
@@ -166,9 +162,13 @@ var GameScene = new Phaser.Class({
             victim.setVelocityX(-700);
             game.physics.add.collider(victim, platforms);
             var last = zombies.getLast(true);
-            game.physics.add.overlap(last, victim, function () {
-                collectVictims(last, victim, game)
-            }, null, this);
+
+            zombies.children.iterate(function (childZombie) {
+                game.physics.add.overlap(childZombie, victim, function () {
+                    collectVictims(childZombie, victim, game)
+                }, null, this);
+            });
+           
             enemyNeeded++;
         }
     }
@@ -253,10 +253,24 @@ function collectVictims(zombie, victim, game) {
     addZombie();
 
     function addZombie() {
+        zombieCountText.setText(++zombieCount);
         var newzombie = game.physics.add.sprite(300 - newZombiePlace, 880, 'zombie').setScale(2);
         newzombie.anims.play('right', true);
         game.physics.add.collider(newzombie, platforms);
         zombies.add(newzombie);
+    }
+}
+
+function attackerOverlap(childZombie,attacker) {
+    zombieCountText.setText(--zombieCount);
+    newZombiePlace = childZombie.x;
+    attacker.disableBody(true, true);
+    childZombie.disableBody(true, true);
+    zombies.remove(childZombie);
+    
+    if (zombies.getLength() == 0) {
+        this.scene.start('gameOverScene');
+
     }
 }
 
