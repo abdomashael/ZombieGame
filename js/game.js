@@ -11,7 +11,6 @@ var scoreText;
 var zombieCountText;
 var zombieCount;
 
-
 var GameScene = new Phaser.Class({
 
     
@@ -31,8 +30,9 @@ var GameScene = new Phaser.Class({
         this.load.spritesheet('boy', 'assets/boy.png', { frameWidth: 70, frameHeight: 116 });
         this.load.spritesheet('woman', 'assets/woman.png', { frameWidth: 70, frameHeight: 106 });
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
-        this.load.spritesheet('sewer', 'assets/sewer.png', { frameWidth: 70, frameHeight: 70 });
         this.load.spritesheet('dead', 'assets/dead.png', { frameWidth: 75, frameHeight: 61 });
+        this.load.spritesheet('sewer', 'assets/sewer.png',{frameWidth:70, frameHeight:60});
+
     }
     ,
 
@@ -42,8 +42,6 @@ var GameScene = new Phaser.Class({
      counter = 0;
      score = 0;
      zombieCount=0;
-
-
 
         //  A simple background for our game
         background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
@@ -56,6 +54,7 @@ var GameScene = new Phaser.Class({
         platforms.create(960, 980, 'ground');
 
         this.add.image(960,50,'face');
+
 
         // The zombie and its settings
 
@@ -102,8 +101,8 @@ var GameScene = new Phaser.Class({
 
         if (counter == 95) {
             counter = 0;
-
-            switch (getRandomInt(4)) {
+      // Max is our algorithm for randomising the enemy and victims
+            switch (getRandomInt(6)) {
                 case 0://boy
                     addVictim(this, 'boy', 1.1,1.1);
                     break;
@@ -115,6 +114,11 @@ var GameScene = new Phaser.Class({
                 case 2:
                 case 3:
                     addAttacker(this,'attacker',2,1.5);
+                    break;
+
+                case 4:
+                case 5:
+                    addSewer(this,2,1);
                     break;
             }
 
@@ -144,6 +148,18 @@ var GameScene = new Phaser.Class({
 
 
 
+        function addSewer(game,scaleX,scaleY) {
+            var sewer = game.physics.add.sprite(1900, 900, 'sewer').setScale(scaleX,scaleY);
+            sewer.setVelocityX(-400);
+            sewer.name = 'sewer';
+            game.physics.add.collider(sewer, platforms);
+
+            zombies.children.iterate(function (childZombie) {
+                game.physics.add.overlap(childZombie,sewer,function () {
+                    attackerOverlap(childZombie,sewer,game,500)
+                },null,game);
+            });
+        }
 
         function addAttacker(game,attackerSrc,scaleX,scaleY) {
             var attacker = game.physics.add.sprite(2100, 850, attackerSrc).setScale(scaleX,scaleY);
@@ -164,8 +180,10 @@ var GameScene = new Phaser.Class({
 
             zombieCountText.setText(--zombieCount);
             newZombiePlace = childZombie.x;
-            attacker.disableBody(true, true);
-            
+            if(attacker.name != 'sewer'){
+                attacker.disableBody(true, true);
+            }
+
             zombies.remove(childZombie);
             var length = zombies.getLength();
             childZombie.disableBody(true, true);
