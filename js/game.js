@@ -71,7 +71,7 @@ var GameScene = new Phaser.Class({
         createAnimation(this, 'right', 'zombie', 0, 9, 20);
 
         createAnimation(this, 'up', 'zombie', 4, 4, 20);
-        
+
         createAnimation(this, 'dead', 'dead', 0, 11, 20);
 
         createAnimation(this, 'boy', 'boy', 0, 6, 10);
@@ -175,6 +175,7 @@ var GameScene = new Phaser.Class({
         }
 
         function attackerOverlap(childZombie,attacker,game,time) {
+
             var deadZombie = game.physics.add.sprite(childZombie.x,childZombie.y, 'dead').setScale(3);
             deadZombie.anims.play('dead', true);
 
@@ -193,9 +194,9 @@ var GameScene = new Phaser.Class({
 
 
             setTimeout(function () {
-               deadZombie.disableBody(true, true);
+                deadZombie.disableBody(true, true);
 
-               
+
             },time);
            
         }
