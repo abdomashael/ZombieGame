@@ -1,20 +1,20 @@
-var newZombiePlace = 0;
-var iter = 0;
-var counter = 0;
+var newZombiePlace ;
+var iter ;
+var counter ;
 var zombies;
 var zombie;
 var platforms;
 var cursors;
-var score = 0;
+var score ;
 var gameOver = false;
 var scoreText;
 var zombieCountText;
-var enemyNeeded = 0;
-var zombieCount=0;
+var zombieCount;
 
 
 var GameScene = new Phaser.Class({
 
+    
     Extends: Phaser.Scene,
 
     initialize:
@@ -27,16 +27,23 @@ var GameScene = new Phaser.Class({
         this.load.image('sky', 'assets/sky.png');
         this.load.image('face', 'assets/face.png');
         this.load.image('ground', 'assets/platform.png');
-        this.load.spritesheet('zombie', 'assets/zombie.png', { frameWidth: 70, frameHeight: 84 });
+        this.load.spritesheet('zombie', 'assets/zombie1.png', { frameWidth: 70, frameHeight: 84 });
         this.load.spritesheet('boy', 'assets/boy.png', { frameWidth: 70, frameHeight: 116 });
         this.load.spritesheet('woman', 'assets/woman.png', { frameWidth: 70, frameHeight: 106 });
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
         this.load.spritesheet('sewer', 'assets/sewer.png', { frameWidth: 70, frameHeight: 70 });
+        this.load.spritesheet('dead', 'assets/dead.png', { frameWidth: 75, frameHeight: 61 });
     }
     ,
 
     create: function () {
-        
+     newZombiePlace = 0;
+     iter = 0;
+     counter = 0;
+     score = 0;
+     zombieCount=0;
+
+
 
         //  A simple background for our game
         background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
@@ -53,20 +60,20 @@ var GameScene = new Phaser.Class({
         // The zombie and its settings
 
         zombies = this.physics.add.group();
-
-
         zombie = this.physics.add.sprite(400, 450, 'zombie');
-
+        zombieCount++;
+        //  Collide the zombie and the victims with the platforms
+        this.physics.add.collider(zombie, platforms);
         zombie.setScale(2);
         zombies.add(zombie);
-
-        game.physics.add.overlap(zombie,attacker,attackerOverlap,null,game);
 
         //  Our zombie animations, turning, walking left and walking right.
 
         createAnimation(this, 'right', 'zombie', 0, 9, 20);
 
         createAnimation(this, 'up', 'zombie', 4, 4, 20);
+        
+        createAnimation(this, 'dead', 'dead', 0, 11, 20);
 
         createAnimation(this, 'boy', 'boy', 0, 6, 10);
 
@@ -79,11 +86,8 @@ var GameScene = new Phaser.Class({
 
         //  The score
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '43px', fill: '#ffff' });
-        zombieCountText = this.add.text(1020, 50, '1', { fontSize: '43px', fill: '#ffff' });
-
-        //  Collide the zombie and the victims with the platforms
-        this.physics.add.collider(zombie, platforms);
-
+        zombieCountText = this.add.text(1020, 50, zombieCount, { fontSize: '43px', fill: '#ffff' });
+        
         //  Checks to see if the zombie overlaps with any of the victims, if he does call the collectStar function
 
 
@@ -96,26 +100,21 @@ var GameScene = new Phaser.Class({
 
         counter++;
 
-        // if (enemyNeeded == 5) {
-        //     enemyNeeded = 0;
-        //     addAttacker(this);
-        // }
-
-        if (counter == 80) {
+        if (counter == 95) {
             counter = 0;
 
             switch (getRandomInt(4)) {
                 case 0://boy
-                    addVictim(this, 'boy', 1.1);
+                    addVictim(this, 'boy', 1.1,1.1);
                     break;
 
                 case 1://woman
-                    addVictim(this, 'woman', 1);
+                    addVictim(this, 'woman', 1.8,1.4);
                     break;
 
                 case 2:
                 case 3:
-                    addAttacker(this);
+                    addAttacker(this,'attacker',2,1.5);
                     break;
             }
 
@@ -124,7 +123,7 @@ var GameScene = new Phaser.Class({
 
        
 
-        var speed = 650;
+        var speed = 700;
         zombies.children.iterate(function (child) {
             if ((cursors.up.isDown || cursors.space.isDown) && child.body.touching.down) {
                 child.setVelocityY(-speed);
@@ -146,22 +145,49 @@ var GameScene = new Phaser.Class({
 
 
 
-        function addAttacker(game) {
-            var attacker = game.physics.add.sprite(2100, 850, 'attacker').setScale(2, 1.5);
+        function addAttacker(game,attackerSrc,scaleX,scaleY) {
+            var attacker = game.physics.add.sprite(2100, 850, attackerSrc).setScale(scaleX,scaleY);
             attacker.anims.play('attacker', true);
             game.physics.add.collider(attacker, platforms);
             attacker.setVelocityX(-700);
             zombies.children.iterate(function (childZombie) {
-                game.physics.add.overlap(childZombie,attacker,attackerOverlap,null,game);
+                
+                game.physics.add.overlap(childZombie,attacker,function () {
+                    attackerOverlap(childZombie,attacker,game,2000)
+                },null,game);
             });
         }
 
-        function addVictim(game, type, scale) {
-            var victim = game.physics.add.sprite(2100, 880, type).setScale(scale);
+        function attackerOverlap(childZombie,attacker,game,time) {
+            var deadZombie = game.physics.add.sprite(childZombie.x,childZombie.y, 'dead').setScale(3);
+            deadZombie.anims.play('dead', true);
+
+            zombieCountText.setText(--zombieCount);
+            newZombiePlace = childZombie.x;
+            attacker.disableBody(true, true);
+            
+            zombies.remove(childZombie);
+            var length = zombies.getLength();
+            childZombie.disableBody(true, true);
+            if (length == 0) {
+                game.scene.start('gameOverScene');
+            }
+
+
+            setTimeout(function () {
+               deadZombie.disableBody(true, true);
+
+               
+            },time);
+           
+        }
+        
+
+        function addVictim(game, type, scaleX,scaleY) {
+            var victim = game.physics.add.sprite(2100, 850, type).setScale(scaleX,scaleY);
             victim.anims.play(type, true);
-            victim.setVelocityX(-700);
+            victim.setVelocityX(-400);
             game.physics.add.collider(victim, platforms);
-            var last = zombies.getLast(true);
 
             zombies.children.iterate(function (childZombie) {
                 game.physics.add.overlap(childZombie, victim, function () {
@@ -169,13 +195,42 @@ var GameScene = new Phaser.Class({
                 }, null, this);
             });
            
-            enemyNeeded++;
         }
     }
 
 
 
 });
+
+function collectVictims(zombie, victim, game) {
+    if(newZombiePlace>160){
+        newZombiePlace=0;
+    }
+    newZombiePlace = newZombiePlace + 40;
+
+    victim.disableBody(true, true);
+
+    //  Add and update the score
+    score += 10;
+    scoreText.setText('Score: ' + score);
+
+    addZombie();
+
+    function addZombie() {
+        ++zombieCount;
+        zombieCountText.setText(zombieCount);
+        var newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombie').setScale(2);
+        newzombie.anims.play('right', true);
+        game.physics.add.collider(newzombie, platforms);
+        zombies.add(newzombie);
+    }
+}
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
 
 var GameOverScene = new Phaser.Class({
 
@@ -241,42 +296,6 @@ function createAnimation(game, animKey, animFrameSource, startFrame, endFrame, f
     });
 }
 
-function collectVictims(zombie, victim, game) {
-    newZombiePlace = newZombiePlace + 40;
-
-    victim.disableBody(true, true);
-
-    //  Add and update the score
-    score += 10;
-    scoreText.setText('Score: ' + score);
-
-    addZombie();
-
-    function addZombie() {
-        zombieCountText.setText(++zombieCount);
-        var newzombie = game.physics.add.sprite(300 - newZombiePlace, 880, 'zombie').setScale(2);
-        newzombie.anims.play('right', true);
-        game.physics.add.collider(newzombie, platforms);
-        zombies.add(newzombie);
-    }
-}
-
-function attackerOverlap(childZombie,attacker) {
-    zombieCountText.setText(--zombieCount);
-    newZombiePlace = childZombie.x;
-    attacker.disableBody(true, true);
-    childZombie.disableBody(true, true);
-    zombies.remove(childZombie);
-    
-    if (zombies.getLength() == 0) {
-        this.scene.start('gameOverScene');
-
-    }
-}
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
 
 
 
