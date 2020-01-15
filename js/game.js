@@ -156,7 +156,7 @@ var GameScene = new Phaser.Class({
 
 
         function addSewer(game,scaleX,scaleY) {
-            var sewer = game.physics.add.sprite(1900, 900, 'sewer').setScale(scaleX,scaleY);
+            var sewer = game.physics.add.sprite(2100, 850, 'sewer').setScale(scaleX,scaleY);
             sewer.setVelocityX(-400);
             sewer.name = 'sewer';
             game.physics.add.collider(sewer, platforms);
