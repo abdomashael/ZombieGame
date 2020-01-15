@@ -24,7 +24,7 @@ var GameScene = new Phaser.Class({
         },
     preload: function () {
         this.load.audio('biteSound', 'assets/ZombieBite.mp3');
-        this.load.audio('biteSound', 'assets/ZombieDying.mp3');
+        this.load.audio('deadSound', 'assets/ZombieDying.mp3');
         this.load.image('sky', 'assets/sky.png');
         this.load.image('face', 'assets/face.png');
         this.load.image('ground', 'assets/platform.png');
@@ -48,6 +48,8 @@ var GameScene = new Phaser.Class({
 
         // Adding Zombie Sounds
         this.sound.add('biteSound');
+        this.sound.add('deadSound');
+
         //  A simple background for our game
         background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
 
@@ -182,7 +184,10 @@ var GameScene = new Phaser.Class({
         function attackerOverlap(childZombie,attacker,game,time) {
             var deadZombie = game.physics.add.sprite(childZombie.x,childZombie.y, 'dead').setScale(3);
             deadZombie.anims.play('dead', true);
-
+            game.sound.play('deadSound');
+            setTimeout(function () {
+                game.sound.removeByKey('deadSound');
+            },4500);
             zombieCountText.setText(--zombieCount);
             newZombiePlace = childZombie.x;
             if(attacker.name != 'sewer'){
@@ -230,7 +235,7 @@ function collectVictims(zombie, victim, game) {
     game.sound.play('biteSound');
     setTimeout(function () {
         game.sound.removeByKey('biteSound');
-    },2000);
+    },3500);
     if(newZombiePlace>160){
         newZombiePlace=0;
     }
