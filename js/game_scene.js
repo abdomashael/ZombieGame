@@ -23,6 +23,7 @@ var GameScene = new Phaser.Class({
             
         },
     preload: function () {
+        this.load.audio('backgMusic', 'assets/F-777-Deadlocked.mp3');
         this.load.audio('biteSound', 'assets/ZombieBite.mp3');
         this.load.audio('deadSound', 'assets/ZombieDying.mp3');
         this.load.image('sky', 'assets/sky.png');
@@ -45,7 +46,23 @@ var GameScene = new Phaser.Class({
      counter = 0;
      score = 0;
      zombieCount=0;
+        //Background Music
+        this.sound.add('backgMusic');
 
+        // Music Configurations
+        var musicConfig = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0
+        };
+
+        //Lets MAke Some Noise
+        this.sound.play("backgMusic",musicConfig);
 
         // Adding Zombie Sounds
         this.sound.add('biteSound');
@@ -200,6 +217,7 @@ var GameScene = new Phaser.Class({
             var length = zombies.getLength();
             childZombie.disableBody(true, true);
             if (length == 0) {
+                game.sound.removeByKey("backgMusic");
                 game.scene.start('gameOverScene');
             }
 
