@@ -28,7 +28,8 @@ var GameScene = new Phaser.Class({
         this.load.image('sky', 'assets/sky.png');
         this.load.image('face', 'assets/face.png');
         this.load.image('ground', 'assets/platform.png');
-        this.load.spritesheet('zombie', 'assets/zombie1.png', { frameWidth: 70, frameHeight: 84 });
+        this.load.spritesheet('zombie', 'assets/zombie.png', { frameWidth: 150, frameHeight: 181 });
+        this.load.spritesheet('zombieGirl', 'assets/zombieGirl.png', { frameWidth: 150, frameHeight: 165 });
         this.load.spritesheet('boy', 'assets/boy.png', { frameWidth: 70, frameHeight: 116 });
         this.load.spritesheet('woman', 'assets/woman.png', { frameWidth: 70, frameHeight: 106 });
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
@@ -58,7 +59,7 @@ var GameScene = new Phaser.Class({
 
         //  Here we create the ground.
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-        platforms.create(960, 980, 'ground');
+        platforms.create(980, 1000, 'ground');
 
         this.add.image(960,50,'face');
 
@@ -66,11 +67,12 @@ var GameScene = new Phaser.Class({
         // The zombie and its settings
 
         zombies = this.physics.add.group();
+        //zombie = this.physics.add.sprite(400, 450, 'zombieGirl');
         zombie = this.physics.add.sprite(400, 450, 'zombie');
         zombieCount++;
         //  Collide the zombie and the victims with the platforms
         this.physics.add.collider(zombie, platforms);
-        zombie.setScale(2);
+        zombie.setScale(1);
         zombies.add(zombie);
 
         //  Our zombie animations, turning, walking left and walking right.
@@ -252,7 +254,7 @@ function collectVictims(zombie, victim, game) {
     function addZombie() {
         ++zombieCount;
         zombieCountText.setText(zombieCount);
-        var newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombie').setScale(2);
+        var newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombie');
         newzombie.anims.play('right', true);
         game.physics.add.collider(newzombie, platforms);
         zombies.add(newzombie);
