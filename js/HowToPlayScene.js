@@ -21,18 +21,28 @@ var HowToPlayScene = new Phaser.Class({
         //UP = this.add.image(150, 300, 'up');
         //Space = this.add.image(100, 300, 'space');
         sewer = this.add.image(150, 600, 'sewer');
-        menuAnim = this.physics.add.sprite(345, 550, 'Anim');
-        Anim.setScale(1.5);
+        Anim = this.physics.add.sprite(345, 550, 'Anim');
         Attacker = this.physics.add.sprite(600, 500, 'attacker');
+
+        //incearsing the sie of the anime
+        Anim.setScale(1.5);
+
+
         //adding nimation to the zombie girl and attacker
         createAnimation(this, 'attacker', 'attacker', 0, 4, 5);
         createAnimation(this, 'idle', 'Anim', 0, 14, 30);
+
+
         //adding a ground to stop the animation
         platforms = this.physics.add.staticGroup();
         platforms.create(700, 980, 'ground');
+
+
         //stopping the anmation by colliding to the ground
         this.physics.add.collider(Anim, platforms);
         this.physics.add.collider(Attacker, platforms);
+
+        
         console.log(txt);
         //ading title
         /*var txt = this.make.text({
