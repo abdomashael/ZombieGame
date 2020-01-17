@@ -31,7 +31,7 @@ var CharctersScene = new Phaser.Class({
         platforms.create(960, 980, 'ground');
         this.physics.add.collider(character1, platforms);
         this.physics.add.collider(character2, platforms);
-        var txt = this.make.text({
+         txt = this.make.text({
             x: 1000,
             y: 300,
             text: 'Choose Your Character!',
