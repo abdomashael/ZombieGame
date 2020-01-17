@@ -26,6 +26,7 @@ var HowToPlayScene = new Phaser.Class({
 
         //incearsing the sie of the anime
         Anim.setScale(1.5);
+        Attacker.setScale(1.5);
 
 
         //adding nimation to the zombie girl and attacker
@@ -42,7 +43,7 @@ var HowToPlayScene = new Phaser.Class({
         this.physics.add.collider(Anim, platforms);
         this.physics.add.collider(Attacker, platforms);
 
-        
+
         console.log(txt);
         //ading title
         /*var txt = this.make.text({
@@ -72,124 +73,14 @@ var HowToPlayScene = new Phaser.Class({
                     mode: 'word',
                     width: 300
                 }
-            },
-            x: 0,
-            y: 300,
-            text: 'Hello to the guide of our game we are pleased you are here and now let us start',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffff',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
-            },
-            x: 50,
-            y: 400,
-            text: 'First you just need to click on space or the up to jump ',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffff',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
-            },
-            x: 100,
-            y: 500,
-            text: 'Please watch out from this zombie eater plant or you will lose on of your loyal friends',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffff',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
-            },
-            x: 150,
-            y: 600,
-            text: 'the last thing we want to tell you is that if you fell in the sewer you will lose',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffff',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
-            },
-            x: 150,
-            y: 600,
-            text: 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffff',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
             }
         });
-       /* var txtparagrph2 = this.make.text({
-            x: 50,
-            y: 400,
-            text: 'First you just need to click on space or the up to jump ',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffdf94',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
-            }
-        });
-        var txtparagrph3 = this.make.text({
-            x: 100,
-            y: 500,
-            text: 'Please watch out from this zombie eater plant or you will lose on of your loyal friends',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffdf94',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
-            }
-        });
-        var txtparagrph4 = this.make.text({
-            x: 150,
-            y: 600,
-            text: 'the last thing we want to tell you is that if you fell in the sewer you will lose',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffdf94',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
-            }
-        });
-        var txtparagrph4 = this.make.text({
-            x: 150,
-            y: 600,
-            text: 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: 'bold 80px Algerian',
-                fill: '#ffdf94',
-                wrap: {
-                    mode: 'word',
-                    width: 300
-                }
-            }
-        });*/
+        Texth = this.add.text(0, 300, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '43px', fill: '#ffff' });
+        Textup = this.add.text(50, 400, 'First you just need to click on space or the up to jump ', { fontSize: '43px', fill: '#ffff' });
+        Textattacker = this.add.text(100, 500, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '43px', fill: '#ffff' });
+        Textatsewer = this.add.text(150, 600, 'the last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '43px', fill: '#ffff' });
+        Textatfinally = this.add.text(200, 700, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '43px', fill: '#ffff' });
+
     },
     update: function () { }
 });
