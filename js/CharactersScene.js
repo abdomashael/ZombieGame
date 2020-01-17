@@ -3,7 +3,7 @@ var CharactersScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize:
         function CharactersScene() {
-            Phaser.Scene.call(this, { key: 'characterscene' });
+            Phaser.Scene.call(this, { key: 'charactersScene' });
         },
     preload: function () {
         this.load.spritesheet('character1', 'assets/Character1.png', { frameWidth: 521, frameHeight: 573 });
