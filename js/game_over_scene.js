@@ -8,11 +8,29 @@ var GameOverScene = new Phaser.Class({
             Phaser.Scene.call(this, { key: 'gameOverScene' });
         },
     preload: function () {
+        this.load.audio('gameoverMusic', 'assets/GameOver.mp3');
         this.load.image('gameOver', 'assets/game_over.png');
         this.load.spritesheet('tryBtn', 'assets/tryBtn.png', { frameWidth: 400, frameHeight: 92 });
         this.load.spritesheet('menuBtn', 'assets/menuBtn.png', { frameWidth: 400, frameHeight: 92 });
     },
     create: function () {
+        //Game Over Music
+        this.sound.add('gameoverMusic');
+
+        // Music Configurations
+        var musicConfig = {
+            mute: false,
+            volume: 0.7,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0
+        };
+
+        //Play Mohahahaha
+        this.sound.play("gameoverMusic", musicConfig);
+
         var game = this;
         this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'gameOver');
         createAnimation(this, "tryBtnOver", "tryBtn", 1, 0, 4);
@@ -32,9 +50,18 @@ var GameOverScene = new Phaser.Class({
         });
        
         this.input.on('pointerdown', function (event, gameObjects) {
-            if (gameObjects[0].name == "tryBtn") { 
+            if (gameObjects[0].name == "tryBtn") {
+                game.sound.removeByKey("gameoverMusic");
+                game.scene.stop('gameOverScene');
                 game.scene.start('gameScene');
-                }
+            }
+
+            if (gameObjects[0].name == "menuBtn") {
+                game.sound.removeByKey("gameoverMusic");
+                game.scene.stop('gameOverScene');
+                game.scene.start('mainmenu');
+            }
+            
         });
 
         this.input.on('pointerout', function (event, gameObjects) {
