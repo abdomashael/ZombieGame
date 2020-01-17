@@ -6,7 +6,7 @@ var HowToPlayScene = new Phaser.Class({
             Phaser.Scene.call(this, { key: 'HowToPlayScene' });
         },
     preload: function () {
-        this.load.image('back', 'assets/backhowtoplay.jpg');
+        this.load.image('back', 'assets/backHowToPlay.png');
         this.load.image('up', 'assets/UP.png');
         this.load.image('space', 'assets/Space.png');
         this.load.image('sewer1', 'assets/sewer1.png');
