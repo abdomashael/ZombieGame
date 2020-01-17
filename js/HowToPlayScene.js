@@ -6,6 +6,7 @@ var HowToPlayScene = new Phaser.Class({
             Phaser.Scene.call(this, { key: 'HowToPlayScene' });
         },
     preload: function () {
+        //LOADING iamges to the secene
         this.load.image('back', 'assets/backHowToPlay.png');
         this.load.image('ground', 'assets/backHowToPlay.png');
         this.load.image('up', 'assets/UP.png');
@@ -15,20 +16,25 @@ var HowToPlayScene = new Phaser.Class({
         this.load.spritesheet('Anim', 'assets/menuAnim.png', { frameWidth: 521, frameHeight: 573 });
     },
     create: function () {
+        //adidng images toteh scene
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
         UP = this.add.image(150, 300, 'up');
-        Space = this.add.image(100, 300, 'space');
+        //Space = this.add.image(100, 300, 'space');
         sewer= this.add.image(150, 600, 'sewer');
         menuAnim = this.physics.add.sprite(345, 550, 'Anim');
         Anim.setScale(1.5);
         Attacker = this.physics.add.sprite(600, 500, 'attacker');
+        //adding nimation to the zombie girl and attacker
         createAnimation(this, 'attacker', 'attacker', 0, 4, 5);
         createAnimation(this, 'idle', 'Anim', 0, 14, 30);
+        //adding a ground to stop the animation
         platforms = this.physics.add.staticGroup();
         platforms.create(700, 980, 'ground');
+        //stopping the anmation by colliding to the ground
         this.physics.add.collider(Anim, platforms);
         this.physics.add.collider(Attacker, platforms);
         console.log(txt);
+        //ading title
         var txt = this.make.text({
             x: 1000,
             y: 100,
@@ -43,6 +49,7 @@ var HowToPlayScene = new Phaser.Class({
                 }
             }
         });
+        //add the paragraphs
         var txtparagrph = this.make.text({
             x: 0,
             y: 300,
