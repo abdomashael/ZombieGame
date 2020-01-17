@@ -48,12 +48,12 @@ var GameScene = new Phaser.Class({
         this.load.image('sky', 'assets/sky.png');
         this.load.image('face', 'assets/face.png');
         this.load.image('ground', 'assets/platform.png');
-        this.load.spritesheet('zombie', 'assets/zombie.png', { frameWidth: 150, frameHeight: 181 });
+        this.load.spritesheet('zombieBoy', 'assets/zombieBoy.png', { frameWidth: 150, frameHeight: 181 });
         this.load.spritesheet('zombieGirl', 'assets/zombieGirl.png', { frameWidth: 150, frameHeight: 165 });
         this.load.spritesheet('boy', 'assets/boy.png', { frameWidth: 70, frameHeight: 116 });
         this.load.spritesheet('woman', 'assets/woman.png', { frameWidth: 70, frameHeight: 106 });
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
-        this.load.spritesheet('dead', 'assets/dead.png', { frameWidth: 75, frameHeight: 61 });
+        this.load.spritesheet('deadBoy', 'assets/deadBoy.png', { frameWidth: 75, frameHeight: 61 });
         this.load.spritesheet('sewer', 'assets/sewer.png', { frameWidth: 70, frameHeight: 60 });
 
     }
@@ -105,8 +105,15 @@ var GameScene = new Phaser.Class({
         // The zombie and its settings
 
         zombies = this.physics.add.group();
-        //zombie = this.physics.add.sprite(400, 450, 'zombieGirl');
-        zombie = this.physics.add.sprite(400, 450, 'zombie');
+        if(charID == 1 ){
+            zombie = this.physics.add.sprite(400, 450,'zombieBoy');
+
+        }
+        else{
+            zombie = this.physics.add.sprite(400, 450, 'zombieGirl');
+        }
+
+
         zombieCount++;
         //  Collide the zombie and the victims with the platforms
         this.physics.add.collider(zombie, platforms);
@@ -114,12 +121,21 @@ var GameScene = new Phaser.Class({
         zombies.add(zombie);
 
         //  Our zombie animations, turning, walking left and walking right.
+        if(charID == 1){
+            // All animations are created and working
+            createAnimation(this, 'right', 'zombieBoy', 0, 9, 20);
+            createAnimation(this, 'up', 'zombieBoy', 4, 4, 20);
+            createAnimation(this, 'dead', 'deadBoy', 0, 11, 20);
+        }
+        else{
 
-        createAnimation(this, 'right', 'zombie', 0, 9, 20);
+            // We need to create animations for girl right walking, jumping and dead Girl.
+            createAnimation(this, 'right', 'zombieGirl', 0, 9, 20);
+            createAnimation(this, 'up', 'zombieGirl', 4, 4, 20);
+            createAnimation(this, 'dead', 'deadGirl', 0, 11, 20);
 
-        createAnimation(this, 'up', 'zombie', 4, 4, 20);
+        }
 
-        createAnimation(this, 'dead', 'dead', 0, 11, 20);
 
         createAnimation(this, 'boy', 'boy', 0, 6, 10);
 
@@ -300,7 +316,13 @@ function collectVictims(zombie, victim, game) {
     function addZombie() {
         ++zombieCount;
         zombieCountText.setText(zombieCount);
-        var newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombie');
+        var newzombie;
+        if(charID == 1){
+            newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombieBoy');
+        }
+        else{
+            newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombieGirl');
+        }
         newzombie.anims.play('right', true);
         game.physics.add.collider(newzombie, platforms);
         zombies.add(newzombie);
