@@ -77,7 +77,7 @@ var MainMenu = new Phaser.Class({
         this.input.on('pointerdown', function (event, gameObjects) {
             if (gameObjects[0].name == "playBtn") { 
                 game.scene.stop();
-                game.scene.start('gameScene');
+                game.scene.start('charactersScene');
                 }
         });
 
