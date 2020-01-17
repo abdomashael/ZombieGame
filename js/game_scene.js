@@ -54,6 +54,7 @@ var GameScene = new Phaser.Class({
         this.load.spritesheet('woman', 'assets/woman.png', { frameWidth: 70, frameHeight: 106 });
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
         this.load.spritesheet('deadBoy', 'assets/deadBoy.png', { frameWidth: 75, frameHeight: 61 });
+        this.load.spritesheet('deadGirl', 'assets/deadGirl.png', { frameWidth: 75, frameHeight: 69 });
         this.load.spritesheet('sewer', 'assets/sewer.png', { frameWidth: 70, frameHeight: 60 });
 
     }
