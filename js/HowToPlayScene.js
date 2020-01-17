@@ -16,7 +16,7 @@ var HowToPlayScene = new Phaser.Class({
         this.load.spritesheet('Anim', 'assets/menuAnim.png', { frameWidth: 521, frameHeight: 573 });
     },
     create: function () {
-        //adidng images toteh scene
+        //adidng images to the scene
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
         //UP = this.add.image(150, 300, 'up');
         //Space = this.add.image(100, 300, 'space');
@@ -69,7 +69,7 @@ var HowToPlayScene = new Phaser.Class({
         Texth = this.add.text(0, 300, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '30px', fill: '#ffff' });
         Textup = this.add.text(50, 400, 'First you just need to click on space or the up to jump ', { fontSize: '30px', fill: '#ffff' });
         Textattacker = this.add.text(100, 500, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '30px', fill: '#ffff' });
-        Textatsewer = this.add.text(150, 600, 'the last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '30px', fill: '#ffff' });
+        Textatsewer = this.add.text(150, 600, 'the last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '30px', fill: '#ffff',fontFamily:'Calibri'});
         Textatfinally = this.add.text(200, 700, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '30px', fill: '#ffff' });
 
     },
