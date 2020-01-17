@@ -18,7 +18,7 @@ var HowToPlayScene = new Phaser.Class({
     create: function () {
         //adidng images toteh scene
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
-        UP = this.add.image(150, 300, 'up');
+        //UP = this.add.image(150, 300, 'up');
         //Space = this.add.image(100, 300, 'space');
         sewer = this.add.image(150, 600, 'sewer');
         menuAnim = this.physics.add.sprite(345, 550, 'Anim');
@@ -35,7 +35,7 @@ var HowToPlayScene = new Phaser.Class({
         this.physics.add.collider(Attacker, platforms);
         console.log(txt);
         //ading title
-        var txt = this.make.text({
+        /*var txt = this.make.text({
             x: 1000,
             y: 100,
             text: 'Welcome To Our Game',
@@ -48,9 +48,21 @@ var HowToPlayScene = new Phaser.Class({
                     width: 300
                 }
             }
-        });
+        });*/
         //add the paragraphs
         var txtparagrph = this.make.text({
+            x: 1000,
+            y: 100,
+            text: 'Welcome To Our Game',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 80px Algerian',
+                fill: '#ffdf94',
+                wrap: {
+                    mode: 'word',
+                    width: 300
+                }
+            },
             x: 0,
             y: 300,
             text: 'Hello to the guide of our game we are pleased you are here and now let us start',
