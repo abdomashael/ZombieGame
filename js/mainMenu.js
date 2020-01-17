@@ -37,7 +37,7 @@ var MainMenu = new Phaser.Class({
         badgesBtn.setScale(1.5);
         creditsBtn.setScale(1.5);
 
-        createAnimation(this, 'idle', 'menuAnim', 0, 14, 30);
+        createAnimation(this, 'idle', 'menuAnim', 0, 14, 25);
         menuAnim.anims.play('idle',true);
 
         createAnimation(this, 'playBtn', 'playBtn', 0, 1, 4);
@@ -76,7 +76,7 @@ var MainMenu = new Phaser.Class({
        
         this.input.on('pointerdown', function (event, gameObjects) {
             if (gameObjects[0].name == "playBtn") { 
-                game.scene.stop();
+                game.scene.stop('mainmenu');
                 game.scene.start('gameScene');
                 }
         });

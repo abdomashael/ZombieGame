@@ -33,8 +33,15 @@ var GameOverScene = new Phaser.Class({
        
         this.input.on('pointerdown', function (event, gameObjects) {
             if (gameObjects[0].name == "tryBtn") { 
+                game.scene.stop('gameOverScene');
                 game.scene.start('gameScene');
-                }
+            }
+
+            if (gameObjects[0].name == "menuBtn") { 
+                game.scene.stop('gameOverScene');
+                game.scene.start('mainmenu');
+            }
+            
         });
 
         this.input.on('pointerout', function (event, gameObjects) {

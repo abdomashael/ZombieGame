@@ -68,7 +68,7 @@ var GameScene = new Phaser.Class({
         // Music Configurations
         var musicConfig = {
             mute: false,
-            volume: 1,
+            volume: 0.7,
             rate: 1,
             rate: 1,
             detune: 0,
@@ -245,6 +245,7 @@ var GameScene = new Phaser.Class({
 
             if (length == 0) {
                 game.sound.removeByKey("backgMusic");
+                game.scene.stop('gameScene');
                 game.scene.start('gameOverScene');
             }
 
@@ -277,7 +278,7 @@ function collectVictims(zombie, victim, game) {
     game.sound.play('biteSound');
     setTimeout(function () {
         game.sound.removeByKey('biteSound');
-    },3500);
+    },2000);
     if(newZombiePlace>160){
         newZombiePlace=0;
     }
