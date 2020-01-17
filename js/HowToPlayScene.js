@@ -26,7 +26,7 @@ var HowToPlayScene = new Phaser.Class({
 
         //incearsing the sie of the anime
         Anim.setScale(1.5);
-        Attacker.setScale(1.5);
+        Attacker.setScale(4);
 
 
         //adding nimation to the zombie girl and attacker
