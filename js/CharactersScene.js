@@ -1,8 +1,8 @@
-var CharctersScene = new Phaser.Class({
+var CharactersScene = new Phaser.Class({
 
     Extends: Phaser.Scene,
     initialize:
-        function CharctersScene() {
+        function CharactersScene() {
             Phaser.Scene.call(this, { key: 'characterscene' });
         },
     preload: function () {
