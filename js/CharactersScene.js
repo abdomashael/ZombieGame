@@ -6,15 +6,15 @@ var CharactersScene = new Phaser.Class({
             Phaser.Scene.call(this, { key: 'charactersScene' });
         },
     preload: function () {
-        this.load.spritesheet('character1', 'assets/Character1.png', { frameWidth: 521, frameHeight: 573 });
+        this.load.spritesheet('character1', 'assets/Character1.png', { frameWidth: 521, frameHeight: 628 });
         this.load.spritesheet('character2', 'assets/character2.png', { frameWidth: 521, frameHeight: 573 });
         this.load.image('back', 'assets/back.png');
         this.load.image('ground', 'assets/platform.png');
     },
     create: function () {
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
-        character1 = this.physics.add.sprite(1200, 690, 'character1');
-        character2 = this.physics.add.sprite(800, 690, 'character2');
+        character1 = this.physics.add.sprite(1200, 650, 'character1');
+        character2 = this.physics.add.sprite(700, 690, 'character2').setScale(2);
         character1.setInteractive();
         character1.name = "character1";
         character2.setInteractive();
@@ -45,14 +45,16 @@ var CharactersScene = new Phaser.Class({
         });
 
         character1.on('pointerdown', function () {
-            console.log(this.name);
             var id = this.name;
+            game.sound.removeByKey("menuMusic");
+            game.scene.stop('charactersScene');
             game.scene.start('gameScene');
             return id;
         })
         character2.on('pointerdown', function () {
-            console.log(this.name);
             var id = this.name;
+            game.sound.removeByKey("menuMusic");
+            game.scene.stop('charactersScene');
             game.scene.start('gameScene');
             return id;
 
