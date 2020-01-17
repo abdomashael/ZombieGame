@@ -15,6 +15,6 @@ var config = {
         width: 1920,
         height: 1080,
     },
-    scene: [MainMenu,CharctersScene,GameScene, GameOverScene],
+    scene: [MainMenu,CharActersScene,GameScene, GameOverScene],
 };
 var game = new Phaser.Game(config);
