@@ -165,7 +165,7 @@ var GameScene = new Phaser.Class({
 
                 case 4:
                 case 5:
-                    addSewer(this, 2, 1);
+                    addSewer(this, 1.5, 1);
                     break;
             }
 
