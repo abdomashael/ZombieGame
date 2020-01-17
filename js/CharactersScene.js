@@ -6,6 +6,26 @@ var CharactersScene = new Phaser.Class({
             Phaser.Scene.call(this, { key: 'charactersScene' });
         },
     preload: function () {
+
+        var txt = this.add.text(850, 400, 'Loading ....', { fontSize: '43px', fill: '#00a308' });
+        var progress = this.add.graphics();
+
+        this.load.on('progress', function (value) {
+            
+            progress.clear();
+            progress.fillStyle(0x00a308, 1);
+            progress.fillRect(0, 270, 1200 * value, 60);
+
+        });
+
+        this.load.on('complete', function () {
+
+            progress.destroy();
+            txt.destroy();
+
+        });
+
+        
         this.load.spritesheet('character1', 'assets/character1.png', { frameWidth: 521, frameHeight: 628 });
         this.load.spritesheet('character2', 'assets/character2.png', { frameWidth: 521, frameHeight: 573 });
         this.load.image('back', 'assets/back.png');

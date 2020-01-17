@@ -10,20 +10,21 @@ var MainMenu = new Phaser.Class({
             Phaser.Scene.call(this, { key: 'mainmenu' });
         },
     preload: function () {
-        this.add.text(850, 400, 'Loading ....', { fontSize: '43px', fill: '#00a308' });
+        var txt = this.add.text(850, 400, 'Loading ....', { fontSize: '43px', fill: '#00a308' });
         var progress = this.add.graphics();
 
         this.load.on('progress', function (value) {
-
+            
             progress.clear();
             progress.fillStyle(0x00a308, 1);
-            progress.fillRect(0, 270, 800 * value, 60);
+            progress.fillRect(0, 270, 1200 * value, 60);
 
         });
 
         this.load.on('complete', function () {
 
             progress.destroy();
+            txt.destroy();
 
         });
 
