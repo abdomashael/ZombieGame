@@ -22,11 +22,11 @@ var HowToPlayScene = new Phaser.Class({
         //Space = this.add.image(100, 300, 'space');
         sewer = this.add.image(1800, 625, 'sewer1');
         var Anim = this.physics.add.sprite(1500, 300, 'Anim');
-        var Attacker = this.physics.add.sprite(345, 500, 'attacker');
+        var Attacker = this.physics.add.sprite(345, 300, 'attacker');
 
         //incearsing the scaie of the anime
-        Anim.setScale(3);
-        Attacker.setScale(0.5);
+        Anim.setScale(0.5);
+        Attacker.setScale(3);
 
 
         //adding nimation to the zombie girl and attacker
@@ -36,8 +36,8 @@ var HowToPlayScene = new Phaser.Class({
 
 
         //play the animation
-        Anim.anims.play('attacker', true);
-        Attacker.anims.play('idle', true);
+        Anim.anims.play('idle', true);
+        Attacker.anims.play('attacker', true);
 
 
 
