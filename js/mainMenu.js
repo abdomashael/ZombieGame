@@ -25,7 +25,7 @@ var MainMenu = new Phaser.Class({
 
         });
 
-        this.load.audio('menuMusic', 'assets/Reborn - Main Menu.mp3');
+        this.load.audio('menuMusic', 'assets/MainTheme.mp3');
         this.load.spritesheet('menuAnim', 'assets/menuAnim.png', { frameWidth: 521, frameHeight: 573 });
         this.load.image('back', 'assets/back.png');
         this.load.image('ground', 'assets/platform.png');
@@ -43,7 +43,6 @@ var MainMenu = new Phaser.Class({
         var musicConfig = {
             mute: false,
             volume: 1,
-            rate: 1,
             rate: 1,
             detune: 0,
             seek: 0,
