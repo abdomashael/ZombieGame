@@ -7,6 +7,7 @@ var MainMenu = new Phaser.Class({
             Phaser.Scene.call(this, { key: 'mainmenu' });
         },
     preload: function () {
+        this.load.audio('menuMusic', 'assets/Reborn - Main Menu.mp3');
         this.load.spritesheet('menuAnim', 'assets/menuAnim.png', { frameWidth: 521, frameHeight: 573 });
         this.load.image('back', 'assets/back.png');
         this.load.image('ground','assets/platform.png');
@@ -17,6 +18,27 @@ var MainMenu = new Phaser.Class({
 
     },
     create: function () {
+
+        // Main Menu Music
+        this.sound.add('menuMusic');
+
+        // Music Configurations
+        var musicConfig = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0
+        };
+
+        // Play Menu Music
+        this.sound.play("menuMusic",musicConfig);
+
+
+
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
 
         //Adding sprite to menu
@@ -75,8 +97,10 @@ var MainMenu = new Phaser.Class({
         });
        
         this.input.on('pointerdown', function (event, gameObjects) {
-            if (gameObjects[0].name == "playBtn") { 
-                game.scene.stop('mainmenu');
+
+            if (gameObjects[0].name == "playBtn") {
+                game.sound.removeByKey("menuMusic");
+                game.scene.stop();
                 game.scene.start('gameScene');
                 }
         });
