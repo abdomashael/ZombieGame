@@ -46,7 +46,8 @@ var GameScene = new Phaser.Class({
         this.load.audio('biteSound', 'assets/ZombieBite.mp3');
         this.load.audio('deadSound', 'assets/ZombieDying.mp3');
         this.load.image('sky', 'assets/sky.png');
-        this.load.image('face', 'assets/face.png');
+        this.load.image('faceBoy', 'assets/faceBoy.png');
+        this.load.image('faceGirl', 'assets/faceGirl.png');
         this.load.image('ground', 'assets/platform.png');
         this.load.spritesheet('zombieBoy', 'assets/zombieBoy.png', { frameWidth: 150, frameHeight: 181 });
         this.load.spritesheet('zombieGirl', 'assets/zombieGirl.png', { frameWidth: 150, frameHeight: 165 });
@@ -54,14 +55,15 @@ var GameScene = new Phaser.Class({
         this.load.spritesheet('woman', 'assets/woman.png', { frameWidth: 70, frameHeight: 106 });
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
         this.load.spritesheet('deadBoy', 'assets/deadBoy.png', { frameWidth: 75, frameHeight: 61 });
-        this.load.spritesheet('deadGirl', 'assets/deadGirl.png', { frameWidth: 75, frameHeight: 69 });
+        this.load.spritesheet('deadGirl', 'assets/deadGirl.png', { frameWidth: 75, frameHeight: 68 });
         this.load.spritesheet('sewer', 'assets/sewer.png', { frameWidth: 70, frameHeight: 60 });
 
     }
     ,
 
     create: function () {
-        console.log( charID);
+
+        console.log(charID);
 
         newZombiePlace = 0;
         iter = 0;
@@ -75,7 +77,6 @@ var GameScene = new Phaser.Class({
         var musicConfig = {
             mute: false,
             volume: 0.7,
-            rate: 1,
             rate: 1,
             detune: 0,
             seek: 0,
@@ -100,7 +101,12 @@ var GameScene = new Phaser.Class({
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         platforms.create(980, 1000, 'ground');
 
-        this.add.image(960, 50, 'face');
+        if(charID == 1){
+            this.add.image(960, 50, 'faceBoy');
+        }
+        else{
+            this.add.image(960, 50, 'faceGirl');
+        }
 
 
         // The zombie and its settings
@@ -113,7 +119,6 @@ var GameScene = new Phaser.Class({
         else{
             zombie = this.physics.add.sprite(400, 450, 'zombieGirl');
         }
-
 
         zombieCount++;
         //  Collide the zombie and the victims with the platforms
@@ -239,8 +244,16 @@ var GameScene = new Phaser.Class({
         }
 
         function attackerOverlap(childZombie, attacker, game, time) {
-            var deadZombie = game.physics.add.sprite(childZombie.x, childZombie.y, 'dead').setScale(3);
+            var deadZombie;
+            if(charID == 1 ){
+                deadZombie = game.physics.add.sprite(childZombie.x, childZombie.y, 'deadBoy').setScale(3);
+            }
+            else{
+                deadZombie = game.physics.add.sprite(childZombie.x, childZombie.y, 'deadGirl').setScale(3);
+            }
+
             deadZombie.anims.play('dead', true);
+
             game.sound.play('deadSound');
             setTimeout(function () {
                 game.sound.removeByKey('deadSound');
