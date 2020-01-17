@@ -6,7 +6,7 @@ var CharactersScene = new Phaser.Class({
             Phaser.Scene.call(this, { key: 'charactersScene' });
         },
     preload: function () {
-        this.load.spritesheet('character1', 'assets/Character1.png', { frameWidth: 521, frameHeight: 628 });
+        this.load.spritesheet('character1', 'assets/character1.png', { frameWidth: 521, frameHeight: 628 });
         this.load.spritesheet('character2', 'assets/character2.png', { frameWidth: 521, frameHeight: 573 });
         this.load.image('back', 'assets/back.png');
         this.load.image('ground', 'assets/platform.png');
