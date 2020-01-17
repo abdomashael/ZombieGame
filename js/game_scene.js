@@ -278,8 +278,3 @@ function collectVictims(zombie, victim, game) {
         zombies.add(newzombie);
     }
 }
-
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
