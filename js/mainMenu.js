@@ -4,7 +4,7 @@ var MainMenu = new Phaser.Class({
     initialize:
 
         function MainMenu() {
-            Phaser.Scene.call(this, { key: 'mainmenu' });
+            Phaser.Scene.call(this, { key: 'mainMenu' });
         },
     preload: function () {
         this.load.spritesheet('menuAnim', 'assets/menuAnim.png', { frameWidth: 521, frameHeight: 573 });
@@ -76,7 +76,7 @@ var MainMenu = new Phaser.Class({
        
         this.input.on('pointerdown', function (event, gameObjects) {
             if (gameObjects[0].name == "playBtn") { 
-                game.scene.stop();
+                game.scene.stop("mainMenu");
                 game.scene.start('charactersScene');
                 }
         });
