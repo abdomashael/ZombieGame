@@ -61,6 +61,7 @@ var CharctersScene = new Phaser.Class({
         })
     },
     update: function () {
+        console.log(txt);
             txt.x += vx;
             if (txt.x > 2500)
             {
