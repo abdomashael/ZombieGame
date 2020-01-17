@@ -1,3 +1,5 @@
+var txt;
+var vx = 15;
 var CharctersScene = new Phaser.Class({
 
     Extends: Phaser.Scene,
