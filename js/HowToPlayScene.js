@@ -22,7 +22,7 @@ var HowToPlayScene = new Phaser.Class({
         //Space = this.add.image(100, 300, 'space');
         sewer = this.add.image(150, 600, 'sewer');
         Anim = this.physics.add.sprite(345, 450, 'Anim');
-        Attacker = this.physics.add.sprite(900, 500, 'attacker');
+        Attacker = this.physics.add.sprite(900, 900, 'attacker');
 
         //incearsing the sie of the anime
         Anim.setScale(1.5);
@@ -43,7 +43,7 @@ var HowToPlayScene = new Phaser.Class({
 
         //adding a ground to stop the animation
         platforms = this.physics.add.staticGroup();
-        platforms.create(700, 980, 'ground');
+        platforms.create(600, 980, 'ground');
 
 
         //stopping the anmation by colliding to the ground
