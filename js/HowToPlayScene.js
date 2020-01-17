@@ -20,7 +20,7 @@ var HowToPlayScene = new Phaser.Class({
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
         UP = this.add.image(150, 300, 'up');
         //Space = this.add.image(100, 300, 'space');
-        sewer= this.add.image(150, 600, 'sewer');
+        sewer = this.add.image(150, 600, 'sewer');
         menuAnim = this.physics.add.sprite(345, 550, 'Anim');
         Anim.setScale(1.5);
         Attacker = this.physics.add.sprite(600, 500, 'attacker');
@@ -62,9 +62,57 @@ var HowToPlayScene = new Phaser.Class({
                     mode: 'word',
                     width: 300
                 }
+            },
+            x: 50,
+            y: 400,
+            text: 'First you just need to click on space or the up to jump ',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 80px Algerian',
+                fill: '#ffff',
+                wrap: {
+                    mode: 'word',
+                    width: 300
+                }
+            },
+            x: 100,
+            y: 500,
+            text: 'Please watch out from this zombie eater plant or you will lose on of your loyal friends',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 80px Algerian',
+                fill: '#ffff',
+                wrap: {
+                    mode: 'word',
+                    width: 300
+                }
+            },
+            x: 150,
+            y: 600,
+            text: 'the last thing we want to tell you is that if you fell in the sewer you will lose',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 80px Algerian',
+                fill: '#ffff',
+                wrap: {
+                    mode: 'word',
+                    width: 300
+                }
+            },
+            x: 150,
+            y: 600,
+            text: 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 80px Algerian',
+                fill: '#ffff',
+                wrap: {
+                    mode: 'word',
+                    width: 300
+                }
             }
         });
-        var txtparagrph2 = this.make.text({
+       /* var txtparagrph2 = this.make.text({
             x: 50,
             y: 400,
             text: 'First you just need to click on space or the up to jump ',
@@ -95,7 +143,7 @@ var HowToPlayScene = new Phaser.Class({
         var txtparagrph4 = this.make.text({
             x: 150,
             y: 600,
-            text: 'the last thing i want to tell you is that if you fell in the sewer you will lose',
+            text: 'the last thing we want to tell you is that if you fell in the sewer you will lose',
             origin: { x: 0.5, y: 0.5 },
             style: {
                 font: 'bold 80px Algerian',
@@ -119,7 +167,7 @@ var HowToPlayScene = new Phaser.Class({
                     width: 300
                 }
             }
-        });
-     },
-    update: function () {}
+        });*/
+    },
+    update: function () { }
 });
