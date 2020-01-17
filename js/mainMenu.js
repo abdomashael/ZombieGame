@@ -37,16 +37,16 @@ var MainMenu = new Phaser.Class({
         badgesBtn.setScale(1.5);
         creditsBtn.setScale(1.5);
 
-        createAnimation(this, 'idle', 'menuAnim', 0, 14, 20);
+        createAnimation(this, 'idle', 'menuAnim', 0, 14, 30);
         menuAnim.anims.play('idle',true);
 
-        createAnimation(this, 'playBtn', 'playBtn', 0, 1, 3);
+        createAnimation(this, 'playBtn', 'playBtn', 0, 1, 4);
 
-        createAnimation(this, 'howToPlayBtn', 'howToPlayBtn', 0, 1, 3);
+        createAnimation(this, 'howToPlayBtn', 'howToPlayBtn', 0, 1, 4);
 
-        createAnimation(this, 'badgesBtn', 'badgesBtn', 0, 1, 3);
+        createAnimation(this, 'badgesBtn', 'badgesBtn', 0, 1, 4);
 
-        createAnimation(this, 'creditsBtn', 'creditsBtn', 0, 1, 3);
+        createAnimation(this, 'creditsBtn', 'creditsBtn', 0, 1, 4);
 
         //virtual line to collide
         platforms = this.physics.add.staticGroup();
@@ -76,6 +76,7 @@ var MainMenu = new Phaser.Class({
        
         this.input.on('pointerdown', function (event, gameObjects) {
             if (gameObjects[0].name == "playBtn") { 
+                game.scene.stop();
                 game.scene.start('gameScene');
                 }
         });
@@ -112,10 +113,10 @@ var MainMenu = new Phaser.Class({
 
     },
     update: function () {
-        var game= this;
+        // var game= this;
 
-        if(cursors.up.isDown){
-            goPlay(game);
-        }
+        // if(cursors.up.isDown){
+        //     goPlay(game);
+        // }
     }
 });

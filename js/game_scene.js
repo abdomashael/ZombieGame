@@ -23,6 +23,22 @@ var GameScene = new Phaser.Class({
             
         },
     preload: function () {
+
+        var progress = this.add.graphics();
+
+    this.load.on('progress', function (value) {
+
+        progress.clear();
+        progress.fillStyle(0xffffff, 1);
+        progress.fillRect(0, 270, 800 * value, 60);
+
+    });
+
+    this.load.on('complete', function () {
+
+        progress.destroy();
+
+    });
         this.load.audio('backgMusic', 'assets/F-777-Deadlocked.mp3');
         this.load.audio('biteSound', 'assets/ZombieBite.mp3');
         this.load.audio('deadSound', 'assets/ZombieDying.mp3');
@@ -206,9 +222,12 @@ var GameScene = new Phaser.Class({
             game.sound.play('deadSound');
             setTimeout(function () {
                 game.sound.removeByKey('deadSound');
-            },4500);
+            },2000);
+            
             zombieCountText.setText(--zombieCount);
+            
             newZombiePlace = childZombie.x;
+            
             if(attacker.name != 'sewer'){
                 attacker.disableBody(true, true);
             }
@@ -216,17 +235,20 @@ var GameScene = new Phaser.Class({
             zombies.remove(childZombie);
             var length = zombies.getLength();
             childZombie.disableBody(true, true);
+
+            
+            setTimeout(function () {
+                deadZombie.disableBody(true, true);
+
+
+            },time);
+
             if (length == 0) {
                 game.sound.removeByKey("backgMusic");
                 game.scene.start('gameOverScene');
             }
 
 
-            setTimeout(function () {
-                deadZombie.disableBody(true, true);
-
-
-            },time);
            
         }
         
@@ -277,9 +299,4 @@ function collectVictims(zombie, victim, game) {
         game.physics.add.collider(newzombie, platforms);
         zombies.add(newzombie);
     }
-}
-
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
 }
