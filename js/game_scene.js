@@ -10,7 +10,8 @@ var gameOver = false;
 var scoreText;
 var zombieCountText;
 var zombieCount;
-
+var ESC;
+var ENTER;
 var GameScene = new Phaser.Class({
 
     
@@ -52,6 +53,7 @@ var GameScene = new Phaser.Class({
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
         this.load.spritesheet('dead', 'assets/dead.png', { frameWidth: 75, frameHeight: 61 });
         this.load.spritesheet('sewer', 'assets/sewer.png',{frameWidth:70, frameHeight:60});
+        
 
     }
     ,
@@ -130,6 +132,9 @@ var GameScene = new Phaser.Class({
         zombieCountText = this.add.text(1020, 50, zombieCount, { fontSize: '43px', fill: '#ffff' });
         
         //  Checks to see if the zombie overlaps with any of the victims, if he does call the collectStar function
+        ESC = this.input.keyboard.addKey('ESC');
+
+        ENTER = this.input.keyboard.addKey('ENTER');
 
 
     }
@@ -266,6 +271,17 @@ var GameScene = new Phaser.Class({
             });
            
         }
+
+        if(ESC.isDown){
+             this.scene.pause()
+        };
+       
+        if(ENTER.isDown){
+             this.scene.resume('gameScene');
+             this.scene.stop();
+
+     };
+
     }
 
 
