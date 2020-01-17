@@ -36,7 +36,7 @@ var CharctersScene = new Phaser.Class({
             origin: { x: 0.5, y: 0.5 },
             style: {
                 font: 'bold 80px Algerian',
-                fill: '#FE3E9B',
+                fill: '#ffdf94',
                 wrap: {
                     mode: 'word',
                     width: 300
@@ -59,5 +59,11 @@ var CharctersScene = new Phaser.Class({
         })
     },
     update: function () {
+            txt.x += vx;
+            if (txt.x > 2500)
+            {
+                txt.x=0;
+                txt.y=300;
+            }
     }
 });
