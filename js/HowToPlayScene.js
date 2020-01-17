@@ -9,8 +9,8 @@ var HowToPlayScene = new Phaser.Class({
         //LOADING iamges to the secene
         this.load.image('back', 'assets/backHowToPlay.png');
         this.load.image('ground', 'assets/backHowToPlay.png');
-        this.load.image('up', 'assets/UP.png');
-        this.load.image('space', 'assets/Space.png');
+        //this.load.image('up', 'assets/UP.png');
+        //this.load.image('space', 'assets/Space.png');
         this.load.image('sewer1', 'assets/sewer1.png');
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
         this.load.spritesheet('Anim', 'assets/menuAnim.png', { frameWidth: 521, frameHeight: 573 });
@@ -21,8 +21,8 @@ var HowToPlayScene = new Phaser.Class({
         //UP = this.add.image(150, 300, 'up');
         //Space = this.add.image(100, 300, 'space');
         sewer = this.add.image(150, 600, 'sewer');
-        Anim = this.physics.add.sprite(345, 550, 'Anim');
-        Attacker = this.physics.add.sprite(600, 500, 'attacker');
+        Anim = this.physics.add.sprite(345, 450, 'Anim');
+        Attacker = this.physics.add.sprite(900, 500, 'attacker');
 
         //incearsing the sie of the anime
         Anim.setScale(1.5);
