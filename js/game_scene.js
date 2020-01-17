@@ -60,6 +60,8 @@ var GameScene = new Phaser.Class({
     ,
 
     create: function () {
+        console.log( charID);
+
         newZombiePlace = 0;
         iter = 0;
         counter = 0;

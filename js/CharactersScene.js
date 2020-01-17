@@ -45,19 +45,18 @@ var CharactersScene = new Phaser.Class({
         });
 
         character1.on('pointerdown', function () {
-            var id = this.name;
+            charID = 1;
+            
             game.sound.removeByKey("menuMusic");
             game.scene.stop('charactersScene');
             game.scene.start('gameScene');
-            return id;
         })
         character2.on('pointerdown', function () {
-            var id = this.name;
+            charID = 2;
+
             game.sound.removeByKey("menuMusic");
             game.scene.stop('charactersScene');
             game.scene.start('gameScene');
-            return id;
-
         })
     },
     update: function () {
