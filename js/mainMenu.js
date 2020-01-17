@@ -104,41 +104,42 @@ var MainMenu = new Phaser.Class({
         this.physics.add.collider(menuAnim, platforms);
 
 
-        this.input.on('pointerover', function (event, gameObjects) {
+        this.input.on('pointerover', function (event, gameObjects) {            
+            console.log(gameObjects);
+
             if (gameObjects[0].name == "playBtn") { gameObjects[0].anims.play('playBtn', true); }
             if (gameObjects[0].name == "howToPlayBtn") { gameObjects[0].anims.play('howToPlayBtn', true); }
             if (gameObjects[0].name == "badgesBtn") { gameObjects[0].anims.play('badgesBtn', true); }
             if (gameObjects[0].name == "creditsBtn") { gameObjects[0].anims.play('creditsBtn', true); }
         });
 
-        this.input.on('pointerdown', function (event, gameObjects) {
+        this.input.on('pointerdown',function (event, gameObjects) {
+            console.log(gameObjects);
 
-            if (gameObjects[0].name == "playBtn") {
-                game.sound.removeByKey("menuMusic");
-                game.scene.stop('mainmenu');
-                game.scene.start('gameScene');
-            }
+        })
 
-        });
+        // this.input.on('pointerdown', function (event, gameObjects) {
 
-        this.input.on('pointerdown', function (event, gameObjects) {
-            if (gameObjects[0].name == "howToPlayBtn") {
-                game.scene.start('howToPlayScene');
-            }
-        });
+        //     console.log(gameObjects);
+            
+        //     if (gameObjects[0].name == "playBtn") {
+        //         // game.sound.removeByKey("menuMusic");
+        //         game.scene.stop('mainmenu');
+        //         game.scene.start('CharactersScene');
+        //     }
 
-        this.input.on('pointerdown', function (event, gameObjects) {
-            if (gameObjects[0].name == "badgesBtn") {
-                game.scene.start('badgesScene');
-            }
-        });
+        //     if (gameObjects[0].name == "howToPlayBtn") {
+        //         game.scene.start('howToPlayScene');
+        //     }
 
-        this.input.on('pointerdown', function (event, gameObjects) {
-            if (gameObjects[0].name == "creditsBtn") {
-                game.scene.start('creditsScene');
-            }
-        });
-
+        //     if (gameObjects[0].name == "badgesBtn") {
+        //         game.scene.start('badgesScene');
+        //     }
+            
+        //     if (gameObjects[0].name == "creditsBtn") {
+        //         game.scene.start('creditsScene');
+        //     }
+        // });
 
         this.input.on('pointerout', function (event, gameObjects) {
 
