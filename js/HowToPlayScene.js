@@ -21,7 +21,7 @@ var HowToPlayScene = new Phaser.Class({
         //UP = this.add.image(150, 300, 'up');
         //Space = this.add.image(100, 300, 'space');
         sewer = this.add.image(1800, 625, 'sewer1');
-        var Anim = this.physics.add.sprite(1500, 300, 'Anim');
+        var Anim = this.physics.add.sprite(345, 550, 'Anim');
         var Attacker = this.physics.add.sprite(345, 300, 'attacker');
 
         //incearsing the scaie of the anime
