@@ -37,10 +37,10 @@ var HowToPlayScene = new Phaser.Class({
 
         //play the animation
         Anim.anims.play('attacker', true);
-        Attacker.anims.play('Anim', true);
+        Attacker.anims.play('idle', true);
 
 
-        
+
         //adding a ground to stop the animation
         platforms = this.physics.add.staticGroup();
         platforms.create(700, 980, 'ground');
