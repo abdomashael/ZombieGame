@@ -8,7 +8,7 @@ var HowToPlayScene = new Phaser.Class({
     preload: function () {
         //LOADING iamges to the secene
         this.load.image('back', 'assets/backHowToPlay.png');
-        this.load.image('ground', 'assets/backHowToPlay.png');
+        this.load.image('ground', 'assets/platform.png');
         //this.load.image('up', 'assets/UP.png');
         //this.load.image('space', 'assets/Space.png');
         this.load.image('sewer1', 'assets/sewer1.png');
@@ -20,13 +20,13 @@ var HowToPlayScene = new Phaser.Class({
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
         //UP = this.add.image(150, 300, 'up');
         //Space = this.add.image(100, 300, 'space');
-        sewer = this.add.image(150, 600, 'sewer1');
-        Anim = this.physics.add.sprite(900, 900, 'Anim');
-        Attacker = this.physics.add.sprite(345, 450, 'attacker');
+        sewer = this.add.image(1800, 625, 'sewer1');
+        var Anim = this.physics.add.sprite(1500, 500, 'Anim');
+        var Attacker = this.physics.add.sprite(345, 300, 'attacker');
 
         //incearsing the sie of the anime
-        Anim.setScale(4);
-        Attacker.setScale(1.5);
+        Anim.setScale(0.5);
+        Attacker.setScale(3);
 
 
         //adding nimation to the zombie girl and attacker
@@ -44,10 +44,8 @@ var HowToPlayScene = new Phaser.Class({
         //adding a ground to stop the animation
         platforms = this.physics.add.staticGroup();
         platforms.create(600, 980, 'ground');
-
-
-        //stopping the anmation by colliding to the ground
-        this.physics.add.collider(Anim, platforms);
+        this.physics.add.collider(A, platforms);
+        platforms.create(900, 550, 'ground');
         this.physics.add.collider(Attacker, platforms);
 
 
@@ -68,11 +66,11 @@ var HowToPlayScene = new Phaser.Class({
             }
         });
         //add the paragraphs
-        Texth = this.add.text(0, 300, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '25px', fill: '#ffff' });
-        Textup = this.add.text(50, 400, 'First you just need to click on space or the up to jump ', { fontSize: '25px', fill: '#ffff' });
-        Textattacker = this.add.text(100, 500, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '25px', fill: '#ffff' });
-        Textatsewer = this.add.text(150, 600, 'the last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '25px', fill: '#ffff' });
-        Textatfinally = this.add.text(200, 700, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '25px', fill: '#ffff' });
+        Texth = this.add.text(0, 300, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '30px', fill: '#ffff' });
+        Textup = this.add.text(50, 400, 'First you just need to click on space or the up to jump ', { fontSize: '30px', fill: '#ffff' });
+        Textattacker = this.add.text(100, 500, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '30px', fill: '#ffff' });
+        Textatsewer = this.add.text(150, 600, 'the last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '30px', fill: '#ffff' });
+        Textatfinally = this.add.text(200, 700, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '30px', fill: '#ffff' });
 
     },
     update: function () { }
