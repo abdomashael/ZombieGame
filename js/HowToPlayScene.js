@@ -20,7 +20,7 @@ var HowToPlayScene = new Phaser.Class({
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
         //UP = this.add.image(150, 300, 'up');
         //Space = this.add.image(100, 300, 'space');
-        sewer = this.add.image(150, 600, 'sewer');
+        sewer = this.add.image(150, 600, 'sewer1');
         Anim = this.physics.add.sprite(900, 900, 'Anim');
         Attacker = this.physics.add.sprite(345, 450, 'attacker');
 
