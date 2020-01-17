@@ -118,6 +118,7 @@ var MainMenu = new Phaser.Class({
                 game.scene.stop('mainmenu');
                 game.scene.start('gameScene');
             }
+
         });
 
         this.input.on('pointerdown', function (event, gameObjects) {

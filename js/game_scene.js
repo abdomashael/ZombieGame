@@ -302,5 +302,6 @@ function collectVictims(zombie, victim, game) {
         newzombie.anims.play('right', true);
         game.physics.add.collider(newzombie, platforms);
         zombies.add(newzombie);
+        
     }
 }
