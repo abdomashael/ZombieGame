@@ -60,4 +60,4 @@ var CharctersScene = new Phaser.Class({
     },
     update: function () {
     }
-})
+});
