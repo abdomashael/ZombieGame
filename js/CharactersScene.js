@@ -33,6 +33,7 @@ var CharctersScene = new Phaser.Class({
         character1.name = "character1";
         character2.name = "character2";
 
+        
 
         //increse the sie of the character
         character1.setScale(1);
