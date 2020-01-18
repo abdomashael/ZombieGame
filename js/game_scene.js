@@ -10,6 +10,10 @@ var gameOver = false;
 var scoreText;
 var zombieCountText;
 var zombieCount;
+
+
+var mouseLeftDown = false;
+
 var GameScene = new Phaser.Class({
 
 
@@ -23,23 +27,24 @@ var GameScene = new Phaser.Class({
         },
     preload: function () {
 
-        this.add.text(850, 400, 'Loading ....', { fontSize: '43px', fill: '#00a308' });
-
+        var txt = this.add.text(850, 400, 'Loading ....', { fontSize: '43px', fill: '#00a308' });
         var progress = this.add.graphics();
 
         this.load.on('progress', function (value) {
-
+            
             progress.clear();
             progress.fillStyle(0x00a308, 1);
-            progress.fillRect(0, 270, 800 * value, 60);
+            progress.fillRect(0, 270, 1200 * value, 60);
 
         });
 
         this.load.on('complete', function () {
 
             progress.destroy();
+            txt.destroy();
 
         });
+
 
         this.load.audio('backgMusic', 'assets/F-777-Deadlocked.mp3');
         this.load.audio('biteSound', 'assets/ZombieBite.mp3');
@@ -48,21 +53,20 @@ var GameScene = new Phaser.Class({
         this.load.image('faceBoy', 'assets/faceBoy.png');
         this.load.image('faceGirl', 'assets/faceGirl.png');
         this.load.image('ground', 'assets/platform.png');
-        this.load.spritesheet('zombieBoy', 'assets/zombieBoy.png', { frameWidth: 150, frameHeight: 181 });
-        this.load.spritesheet('zombieGirl', 'assets/zombieGirl.png', { frameWidth: 150, frameHeight: 165 });
+        this.load.spritesheet('zombieBoy', 'assets/zombieBoy.png', { frameWidth: 113, frameHeight: 170 });
+        this.load.spritesheet('zombieGirl', 'assets/zombieGirl.png', { frameWidth: 100, frameHeight: 160 });
         this.load.spritesheet('boy', 'assets/boy.png', { frameWidth: 70, frameHeight: 116 });
         this.load.spritesheet('woman', 'assets/woman.png', { frameWidth: 70, frameHeight: 106 });
         this.load.spritesheet('attacker', 'assets/attacker.png', { frameWidth: 70, frameHeight: 70 });
         this.load.spritesheet('deadBoy', 'assets/deadBoy.png', { frameWidth: 75, frameHeight: 61 });
         this.load.spritesheet('deadGirl', 'assets/deadGirl.png', { frameWidth: 75, frameHeight: 68 });
-        this.load.spritesheet('sewer', 'assets/sewer.png', { frameWidth: 70, frameHeight: 60 });
+        this.load.spritesheet('sewer', 'assets/sewer.png', { frameWidth: 123, frameHeight: 49 });
 
     }
     ,
 
     create: function () {
 
-        console.log(charID);
 
         newZombiePlace = 0;
         iter = 0;
@@ -113,9 +117,12 @@ var GameScene = new Phaser.Class({
         zombies = this.physics.add.group();
         if(charID == 1 ){
             zombie = this.physics.add.sprite(400, 450,'zombieBoy');
+            console.log("1 ??" +charID);
 
         }
         else{
+            console.log("2 ??" +charID);
+
             zombie = this.physics.add.sprite(400, 450, 'zombieGirl');
         }
 
@@ -150,6 +157,10 @@ var GameScene = new Phaser.Class({
 
         //  Input Events
         cursors = this.input.keyboard.createCursorKeys();
+        
+        this.input.on('pointerdown', function (event, gameObjects) {
+            mouseLeftDown = true;
+        });
 
         //  The score
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '43px', fill: '#ffff' });
@@ -202,7 +213,8 @@ var GameScene = new Phaser.Class({
 
         var speed = 700;
         zombies.children.iterate(function (child) {
-            if ((cursors.up.isDown || cursors.space.isDown) && child.body.touching.down) {
+            if ((cursors.up.isDown || cursors.space.isDown ) && child.body.touching.down) {
+                //|| mouseLeftDownmouseLeftDown = false;
                 child.setVelocityY(-speed);
             }
 
@@ -223,7 +235,7 @@ var GameScene = new Phaser.Class({
 
         function addSewer(game, scaleX, scaleY) {
             var sewer = game.physics.add.sprite(2100, 850, 'sewer').setScale(scaleX, scaleY);
-            sewer.setVelocityX(-400);
+            sewer.setVelocityX(-442);
             sewer.name = 'sewer';
             game.physics.add.collider(sewer, platforms);
 
