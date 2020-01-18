@@ -26,12 +26,16 @@ var badgesScene = new Phaser.Class({
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
         pt50 = this.add.image(300,300, 'pt50');
         pt50.setScale(0.7);
+        pt50Text = this.add.text(180, 550, 'Baby Zombie', { fontSize: '50px', fill: '#ffff' });
         pt100 = this.add.image(700, 600, 'pt100');
         pt100.setScale(0.7);
+        pt100Text = this.add.text(570, 850, 'Amateur Zombie', { fontSize: '50px', fill: '#ffff' });
         pt500 = this.add.image(1100, 300, 'pt500');
         pt500.setScale(0.7);
+        pt500Text = this.add.text(900, 550, 'Expert Zombie', { fontSize: '50px', fill: '#ffff' });
         pt1000 = this.add.image(1500, 600, 'pt1000');
         pt1000.setScale(0.7);
+        pt1000Text = this.add.text(1350, 850, 'Joker', { fontSize: '50px', fill: '#ffff' });
 
         menuBtn = this.physics.add.sprite(920, 950, 'menuBtn').setInteractive();
         menuBtn.name = "menuBtn";

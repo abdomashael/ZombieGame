@@ -107,29 +107,29 @@ var MainMenu = new Phaser.Class({
 
         this.input.on('pointerover', function (event, gameObjects) {
             if (gameObjects[0].name == "playBtn") { gameObjects[0].anims.play('playBtn', true); }
-            if (gameObjects[0].name == "howToPlayBtn") { gameObjects[0].anims.play('howToPlayBtn', true); }
-            if (gameObjects[0].name == "badgesBtn") { gameObjects[0].anims.play('badgesBtn', true); }
-            if (gameObjects[0].name == "creditsBtn") { gameObjects[0].anims.play('creditsBtn', true); }
+            else if (gameObjects[0].name == "howToPlayBtn") { gameObjects[0].anims.play('howToPlayBtn', true); }
+            else if (gameObjects[0].name == "badgesBtn") { gameObjects[0].anims.play('badgesBtn', true); }
+            else if (gameObjects[0].name == "creditsBtn") { gameObjects[0].anims.play('creditsBtn', true); }
         });
 
         this.input.on('pointerdown', function (event, gameObjects) {
-
+            
             if (gameObjects[0].name == "playBtn") {
                 game.scene.stop('mainmenu');
                 game.scene.start('charactersScene');
             }
 
-            if (gameObjects[0].name == "howToPlayBtn") {
+            else if (gameObjects[0].name == "howToPlayBtn") {
                 game.scene.stop('mainmenu');
                 game.scene.start('HowToPlayScene');
             }
 
-            if (gameObjects[0].name == "badgesBtn") {
+            else if (gameObjects[0].name == "badgesBtn") {
                 game.scene.stop('mainmenu');
                 game.scene.start('badgesScene');
             }
 
-            if (gameObjects[0].name == "creditsBtn") {
+            else if (gameObjects[0].name == "creditsBtn") {
                 game.scene.stop('mainmenu');
                 game.scene.start('creditsScene');
             }
@@ -139,9 +139,9 @@ var MainMenu = new Phaser.Class({
         this.input.on('pointerout', function (event, gameObjects) {
 
             if (gameObjects[0].name == "playBtn") { gameObjects[0].anims.stop('playBtn', true); gameObjects[0].setFrame(0); }
-            if (gameObjects[0].name == "howToPlayBtn") { gameObjects[0].anims.stop('howToPlayBtn', true); gameObjects[0].setFrame(0); }
-            if (gameObjects[0].name == "badgesBtn") { gameObjects[0].anims.stop('badgesBtn', true); gameObjects[0].setFrame(0); }
-            if (gameObjects[0].name == "creditsBtn") { gameObjects[0].anims.stop('creditsBtn', true); gameObjects[0].setFrame(0); }
+            else if (gameObjects[0].name == "howToPlayBtn") { gameObjects[0].anims.stop('howToPlayBtn', true); gameObjects[0].setFrame(0); }
+            else if (gameObjects[0].name == "badgesBtn") { gameObjects[0].anims.stop('badgesBtn', true); gameObjects[0].setFrame(0); }
+            else if (gameObjects[0].name == "creditsBtn") { gameObjects[0].anims.stop('creditsBtn', true); gameObjects[0].setFrame(0); }
 
         });
 

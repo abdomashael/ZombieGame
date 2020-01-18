@@ -1,5 +1,5 @@
 
-var CharctersScene = new Phaser.Class({
+var CharactersScene = new Phaser.Class({
 
 
     Extends: Phaser.Scene,
