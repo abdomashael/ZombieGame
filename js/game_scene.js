@@ -10,6 +10,7 @@ var gameOver = false;
 var scoreText;
 var zombieCountText;
 var zombieCount;
+var flag = 0;
 
 var mouseLeftDown = false;
 
@@ -96,7 +97,8 @@ var GameScene = new Phaser.Class({
 
         //  A simple background for our game
         background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
-        console.log(background);
+        background1 = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'level2sky');
+        background1.visible = false;
         //  The platforms group contains the ground and the 2 ledges we can jump on
         platforms = this.physics.add.staticGroup();
 
@@ -167,15 +169,15 @@ var GameScene = new Phaser.Class({
         zombieCountText = this.add.text(1020, 50, zombieCount, { fontSize: '43px', fill: '#ffff' });
 
         //  Checks to see if the zombie overlaps with any of the victims, if he does call the collectStar function
-
-
     }
     ,
     update: function () {
-
+        if (score >=150){
+            background1.visible = true;
+            background1.tilePositionX = iter * 300;
+        }
         background.tilePositionX = iter * 300;
         iter += 0.03;
-
         counter++;
 
         if (counter == 95) {
@@ -201,9 +203,8 @@ var GameScene = new Phaser.Class({
                     break;
             }
 
+
         }
-
-
 
 
         var speed = 700;
@@ -215,8 +216,14 @@ var GameScene = new Phaser.Class({
 
             if (child.body.touching.down) {
                 child.anims.play('right', true);
+                if (score >= 150) {
+                    child.anims.msPerFrame = 40;
+                }
             } else {
                 child.anims.play('up', true);
+                if (score >= 150) {
+                    child.anims.msPerFrame = 40;
+                }
 
             }
 
@@ -232,6 +239,10 @@ var GameScene = new Phaser.Class({
             var sewer = game.physics.add.sprite(2100, 850, 'sewer').setScale(scaleX, scaleY);
             sewer.setVelocityX(-442);
             sewer.name = 'sewer';
+            if (score >= 150) {
+                inc_sewer_speed(sewer, game);
+                sewer.anims.msPerFrame = 60;
+            }
             game.physics.add.collider(sewer, platforms);
 
             zombies.children.iterate(function (childZombie) {
@@ -246,8 +257,12 @@ var GameScene = new Phaser.Class({
             attacker.anims.play('attacker', true);
             game.physics.add.collider(attacker, platforms);
             attacker.setVelocityX(-700);
-            zombies.children.iterate(function (childZombie) {
+            if (score >= 150) {
+                inc_attacker_speed(attacker, game);
+                attacker.anims.msPerFrame = 60;
 
+            }
+            zombies.children.iterate(function (childZombie) {
                 game.physics.add.overlap(childZombie, attacker, function () {
                     attackerOverlap(childZombie, attacker, game, 2000)
                 }, null, game);
@@ -304,6 +319,10 @@ var GameScene = new Phaser.Class({
             var victim = game.physics.add.sprite(2100, 850, type).setScale(scaleX, scaleY);
             victim.anims.play(type, true);
             victim.setVelocityX(-400);
+            if (score >= 150) {
+                inc_victim_speed(victim, game);
+                victim.anims.msPerFrame = 60;
+            }
             game.physics.add.collider(victim, platforms);
 
             zombies.children.iterate(function (childZombie) {
@@ -313,10 +332,7 @@ var GameScene = new Phaser.Class({
             });
 
         }
-
-
     }
-
 
 
 });
@@ -356,11 +372,17 @@ function collectVictims(zombie, victim, game) {
         game.physics.add.collider(newzombie, platforms);
         zombies.add(newzombie);
 
-
-
-        //this.levlgame(game);
-
     }
 
 
 }
+function inc_attacker_speed(attacker, game) {
+    attacker.setVelocityX(-2200);
+}
+function inc_victim_speed(victim, game) {
+    victim.setVelocityX(-500);
+}
+function inc_sewer_speed(sewer, game) {
+    sewer.setVelocityX(-2000);
+}
+
