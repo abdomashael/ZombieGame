@@ -108,14 +108,14 @@ var HowToPlayScene = new Phaser.Class({
 
     update: function () {
 
-
-        //to animate the text
+        if (flag = 0)
+        {//to animate the text
         Texth.y -= vy;
         Texth2.y -= vy;
         Textup.y -= vy;
         Textattacker.y -= vy;
         Textatsewer.y -= vy;
-        Textatfinally.y -= vy;
+        Textatfinally.y -= vy;}
 
 
 
