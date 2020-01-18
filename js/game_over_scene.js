@@ -57,6 +57,14 @@ var GameOverScene = new Phaser.Class({
         var sp = this.add.sprite(1440, 850, 'tryBtn').setInteractive();
         sp.name = "tryBtn";
 
+        var playScore = this.add.text(725,800,'Your Score: '+score, { fontSize: '50px',fontFamily: 'Courier', fontStyle: 'bold italic', fill: '#FFF333' });
+
+
+        //this is for badges
+        // var awards;
+        //awards = this.add.image(800 ,950);
+
+
         sp = this.add.sprite(440, 850, 'menuBtn').setInteractive();
         sp.name = "menuBtn";
 
