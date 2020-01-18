@@ -1,4 +1,9 @@
-var txt;
+var Text1;
+var Text2;
+var Text3;
+var Text4;
+var Text5;
+var Text6;
 var vy=5;
 var CreditsScene = new Phaser.Class({
 
@@ -59,7 +64,7 @@ var CreditsScene = new Phaser.Class({
             }),
 
 
-            menubtn.input.on('pointerdown', function () {
+            this.input.on('pointerdown', function () {
                 console.log("heloo");
                 game.scene.start('mainmenu');
             });
@@ -71,7 +76,7 @@ var CreditsScene = new Phaser.Class({
             Text3.y += vy;
             Text4.y += vy;
             Text5.y += vy;
-            if (txt.y > 1700) {
+            if (Text1.y > 1300) {
                 Text1.x = 500
                 Text1.y = 200;
                 Text2.y = 300;
