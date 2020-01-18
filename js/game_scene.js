@@ -182,7 +182,7 @@ var GameScene = new Phaser.Class({
     update: function () {
         if (score >=150){
             background1.visible = true;
-            background1.tilePositionX = iter * 300;
+            background1.tilePositionX = iter * 600;
         }
         background.tilePositionX = iter * 300;
         iter += 0.03;
