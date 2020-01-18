@@ -1,6 +1,5 @@
 
 var config = {
-    parent: divId,
 
     type: Phaser.AUTO,
 

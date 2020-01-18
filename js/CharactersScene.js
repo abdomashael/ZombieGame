@@ -10,7 +10,7 @@ var CharctersScene = new Phaser.Class({
     preload: function () {
 
         //load the sprite sheets and images to the scene
-        this.load.spritesheet('character1', 'assets/Character1.png', { frameWidth: 521, frameHeight: 573 });
+        this.load.spritesheet('character1', 'assets/character1.png', { frameWidth: 521, frameHeight: 600 });
 
         this.load.spritesheet('character2', 'assets/character2.png', { frameWidth: 521, frameHeight: 573 });
         this.load.image('back', 'assets/back.png');
@@ -20,7 +20,7 @@ var CharctersScene = new Phaser.Class({
         //adding images
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
 
-        character1 = this.physics.add.sprite(1200, 690, 'character1');
+        character1 = this.physics.add.sprite(1200, 660, 'character1');
         character2 = this.physics.add.sprite(800, 690, 'character2');
 
 
