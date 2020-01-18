@@ -117,7 +117,7 @@ var HowToPlayScene = new Phaser.Class({
                 Texthup.x += vx;
 
             }
-            if(Texthup.x > game.config.width)
+            if(Textup.x > game.config.width)
             {
                 Textattacker.y += vy;
 
