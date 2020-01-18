@@ -30,7 +30,7 @@ var GameScene = new Phaser.Class({
         var progress = this.add.graphics();
 
         this.load.on('progress', function (value) {
-            
+
             progress.clear();
             progress.fillStyle(0x00a308, 1);
             progress.fillRect(0, 270, 1200 * value, 60);
@@ -49,6 +49,7 @@ var GameScene = new Phaser.Class({
         this.load.audio('biteSound', 'assets/ZombieBite.mp3');
         this.load.audio('deadSound', 'assets/ZombieDying.mp3');
         this.load.image('sky', 'assets/sky.png');
+        this.load.image('level2sky', 'assets/sk4y.png');
         this.load.image('faceBoy', 'assets/faceBoy.png');
         this.load.image('faceGirl', 'assets/faceGirl.png');
         this.load.image('ground', 'assets/platform.png');
@@ -103,10 +104,10 @@ var GameScene = new Phaser.Class({
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         platforms.create(980, 1000, 'ground');
 
-        if(charID == 1){
+        if (charID == 1) {
             this.add.image(960, 50, 'faceBoy');
         }
-        else{
+        else {
             this.add.image(960, 50, 'faceGirl');
         }
 
@@ -114,13 +115,13 @@ var GameScene = new Phaser.Class({
         // The zombie and its settings
 
         zombies = this.physics.add.group();
-        if(charID == 1 ){
-            zombie = this.physics.add.sprite(400, 450,'zombieBoy');
-            console.log("1 ??" +charID);
+        if (charID == 1) {
+            zombie = this.physics.add.sprite(400, 450, 'zombieBoy');
+            console.log("1 ??" + charID);
 
         }
-        else{
-            console.log("2 ??" +charID);
+        else {
+            console.log("2 ??" + charID);
 
             zombie = this.physics.add.sprite(400, 450, 'zombieGirl');
         }
@@ -132,13 +133,13 @@ var GameScene = new Phaser.Class({
         zombies.add(zombie);
 
         //  Our zombie animations, turning, walking left and walking right.
-        if(charID == 1){
+        if (charID == 1) {
             // All animations are created and working
             createAnimation(this, 'right', 'zombieBoy', 0, 9, 20);
             createAnimation(this, 'up', 'zombieBoy', 4, 4, 20);
             createAnimation(this, 'dead', 'deadBoy', 0, 11, 20);
         }
-        else{
+        else {
 
             // We need to create animations for girl right walking, jumping and dead Girl.
             createAnimation(this, 'right', 'zombieGirl', 0, 9, 20);
@@ -156,7 +157,7 @@ var GameScene = new Phaser.Class({
 
         //  Input Events
         cursors = this.input.keyboard.createCursorKeys();
-        
+
         this.input.on('pointerdown', function (event, gameObjects) {
             mouseLeftDown = true;
         });
@@ -207,7 +208,7 @@ var GameScene = new Phaser.Class({
 
         var speed = 700;
         zombies.children.iterate(function (child) {
-            if ((cursors.up.isDown || cursors.space.isDown ) && child.body.touching.down) {
+            if ((cursors.up.isDown || cursors.space.isDown) && child.body.touching.down) {
                 //|| mouseLeftDownmouseLeftDown = false;
                 child.setVelocityY(-speed);
             }
@@ -255,10 +256,10 @@ var GameScene = new Phaser.Class({
 
         function attackerOverlap(childZombie, attacker, game, time) {
             var deadZombie;
-            if(charID == 1 ){
+            if (charID == 1) {
                 deadZombie = game.physics.add.sprite(childZombie.x, childZombie.y, 'deadBoy').setScale(3);
             }
-            else{
+            else {
                 deadZombie = game.physics.add.sprite(childZombie.x, childZombie.y, 'deadGirl').setScale(3);
             }
 
@@ -312,6 +313,18 @@ var GameScene = new Phaser.Class({
             });
 
         }
+
+        function Level2(Score) {
+            if (Score == 150) {
+                background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'level2sky');
+                child.setVelocityY(-500);
+                sewer.setVelocityX(-242);
+                attacker.setVelocityX(-400);
+                victim.setVelocityX(-400);
+            }
+        }
+
+
     }
 
 
@@ -333,6 +346,7 @@ function collectVictims(zombie, victim, game) {
 
     //  Add and update the score
     score += 10;
+    Level2(score);
     scoreText.setText('Score: ' + score);
 
     addZombie();
@@ -341,15 +355,15 @@ function collectVictims(zombie, victim, game) {
         ++zombieCount;
         zombieCountText.setText(zombieCount);
         var newzombie;
-        if(charID == 1){
+        if (charID == 1) {
             newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombieBoy');
         }
-        else{
+        else {
             newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombieGirl');
         }
         newzombie.anims.play('right', true);
         game.physics.add.collider(newzombie, platforms);
         zombies.add(newzombie);
-        
+
     }
 }
