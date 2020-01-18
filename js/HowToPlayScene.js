@@ -108,9 +108,11 @@ var HowToPlayScene = new Phaser.Class({
     update: function () {
         Texth.x+=vx;
         if(Texth.x > game.config.width)
-            [
+            {
                 Texth2.y += vy;
-            ]
+
+            }
+            
 
      }
 });
