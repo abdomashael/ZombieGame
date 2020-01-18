@@ -11,7 +11,6 @@ var scoreText;
 var zombieCountText;
 var zombieCount;
 var ESC;
-var ENTER;
 var GameScene = new Phaser.Class({
 
     
@@ -134,7 +133,7 @@ var GameScene = new Phaser.Class({
         //  Checks to see if the zombie overlaps with any of the victims, if he does call the collectStar function
         ESC = this.input.keyboard.addKey('ESC');
 
-        ENTER = this.input.keyboard.addKey('ENTER');
+        
 
 
     }
@@ -272,16 +271,12 @@ var GameScene = new Phaser.Class({
            
         }
 
-        if(ESC.isDown){
-             this.scene.pause()
-        };
-       
-        if(ENTER.isDown){
-             this.scene.resume('gameScene');
-             this.scene.stop();
-
-     };
-
+       if(ESC.isDown){
+             console.log("paused");
+                game.scene.start('pauseScene');
+                game.scene.pause('gameScene');
+            };
+          
     }
 
 
