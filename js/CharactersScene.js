@@ -82,17 +82,13 @@ var CharctersScene = new Phaser.Class({
             game.sound.removeByKey("menuMusic");
             game.scene.stop('charactersScene');
             game.scene.start('gameScene');
-        })
+        });
         character2.on('pointerdown', function () {
-            var id = this.name;
-            game.scene.start('gameScene');
-            return id;
-
-
+            charID = 2;
             game.sound.removeByKey("menuMusic");
             game.scene.stop('charactersScene');
             game.scene.start('gameScene');
-        })
+        });
     },
     update: function () {
         //animate the title
