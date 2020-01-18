@@ -101,34 +101,36 @@ var HowToPlayScene = new Phaser.Class({
                 backbtn.setFrame(0);
             }),
             backbtn.on('pointerdown', function () {
-                console.log("heloo");
+                game.scene.stop('HowToPlayScene');
                 game.scene.start('mainmenu');
             })
     },
 
     update: function () {
-         //to animate the text
-        if (flag = 0) {
-            Texth.y += vy;
-            Texth2.y -= vy;
-            Textup.y -= vy;
-            Textattacker.y -= vy;
-            Textatsewer.y -= vy;
-            Textatfinally.y -= vy;
-        }
+
+        
+        // //to animate the text
+        // if (flag == 0) {
+        // Texth.y += vy;
+        //     Texth2.y += vy;
+        //     Textup.y += vy;
+        //     Textattacker.y += vy;
+        //     Textatsewer.y += vy;
+        //     Textatfinally.y += vy;
+        // }
 
 
 
-        //to stop the animation of the text
-        if (Texth.y > -1080) {
-            flag = 1;
-            Texth.y = 200;
-            Texth2.y = 300;
-            Textup.y = 400;
-            Textattacker.y = 500;
-            Textatsewer.y = 600;
-            Textatfinally.y = 700;
-        }
+        // //to stop the animation of the text
+        // if (Texth.y > 1070) {
+        //     flag = 1;
+        //     Texth.y = 200;
+        //     Texth2.y = 300;
+        //     Textup.y = 400;
+        //     Textattacker.y = 500;
+        //     Textatsewer.y = 600;
+        //     Textatfinally.y = 700;
+        // }
         /* if(Texth.x > game.config.width)
              {
                  Texth2.y += vy;

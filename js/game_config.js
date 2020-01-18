@@ -1,5 +1,6 @@
 
 var config = {
+
     type: Phaser.AUTO,
 
     physics: {
@@ -9,6 +10,9 @@ var config = {
             debug: false
         }
     },
+    dom: {
+        createContainer: true
+    },
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -17,7 +21,6 @@ var config = {
     },
 
 
-    scene: [MainMenu,CharctersScene,HowToPlayScene,CreditsScene,GameScene, GameOverScene],
-
+    scene: [MainMenu,CharctersScene,HowToPlayScene,CreditsScene,GameScene, GameOverScene,pauseScene],
 };
 var game = new Phaser.Game(config);
