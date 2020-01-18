@@ -1,15 +1,17 @@
-var txt;
-var vx = 15;
+
 var CharctersScene = new Phaser.Class({
+
 
     Extends: Phaser.Scene,
     initialize:
-        function CharctersScene() {
-            Phaser.Scene.call(this, { key: 'characterscene' });
+        function CharactersScene() {
+            Phaser.Scene.call(this, { key: 'charactersScene' });
         },
     preload: function () {
+
         //load the sprite sheets and images to the scene
         this.load.spritesheet('character1', 'assets/Character1.png', { frameWidth: 521, frameHeight: 573 });
+
         this.load.spritesheet('character2', 'assets/character2.png', { frameWidth: 521, frameHeight: 573 });
         this.load.image('back', 'assets/back.png');
         this.load.image('ground', 'assets/platform.png');
@@ -17,6 +19,7 @@ var CharctersScene = new Phaser.Class({
     create: function () {
         //adding images
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
+
         character1 = this.physics.add.sprite(1200, 690, 'character1');
         character2 = this.physics.add.sprite(800, 690, 'character2');
 
@@ -74,16 +77,21 @@ var CharctersScene = new Phaser.Class({
         
         //on click goto the game scene
         character1.on('pointerdown', function () {
-            console.log(this.name);
-            var id = this.name;
+            charID = 1;
+            
+            game.sound.removeByKey("menuMusic");
+            game.scene.stop('charactersScene');
             game.scene.start('gameScene');
-            return id;
         })
         character2.on('pointerdown', function () {
             var id = this.name;
             game.scene.start('gameScene');
             return id;
 
+
+            game.sound.removeByKey("menuMusic");
+            game.scene.stop('charactersScene');
+            game.scene.start('gameScene');
         })
     },
     update: function () {
