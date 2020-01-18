@@ -83,12 +83,12 @@ var HowToPlayScene = new Phaser.Class({
             }
         });
         //add the paragraphs
-        Texth = this.add.text(0, 200, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '35px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Texth2 = this.add.text(0, 300, 'All you have to do is that Just eat some victims to gain more zombie friends', { fontSize: '35px', fill: '#ff008b', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textup = this.add.text(0, 400, 'First you just need to click on space or the up buttons to jump to avoid attackers', { fontSize: '35px', fill: '#ff008b', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textattacker = this.add.text(0, 500, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '35px', fill: '#ff008b', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textatsewer = this.add.text(0, 600, 'The last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '35px', fill: '#ff008b', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textatfinally = this.add.text(0, 700, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '35px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Texth = this.add.text(-600, 200, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '50px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Texth2 = this.add.text(0, 300, 'All you have to do is that Just eat some victims to gain more zombie friends', { fontSize: '50px', fill: '#ff008b', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Textup = this.add.text(0, 400, 'First you just need to click on space or the up buttons to jump to avoid attackers', { fontSize: '50px', fill: '#ff008b', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Textattacker = this.add.text(0, 500, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '50px', fill: '#ff008b', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Textatsewer = this.add.text(0, 600, 'The last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '50px', fill: '#ff008b', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Textatfinally = this.add.text(0, 700, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '50px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
         
         //making the animation if the menu button
         backbtn.on('pointerover', function () {
@@ -112,7 +112,25 @@ var HowToPlayScene = new Phaser.Class({
                 Texth2.y += vy;
 
             }
-            
+            if(Texth2.y > game.config.height)
+            {
+                Texthup.x += vx;
 
+            }
+            if(Texthup.x > game.config.width)
+            {
+                Textattacker.y += vy;
+
+            }
+            if(Textattacker.y  > game.config.height)
+            {
+                Textatsewer.x += vx;
+
+            }
+            if(Textattacker.x  > game.config.width)
+            {
+                Textatfinally.y += vy;
+
+            }
      }
 });
