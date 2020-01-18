@@ -51,7 +51,9 @@ var GameScene = new Phaser.Class({
         this.load.audio('biteSound', 'assets/ZombieBite.mp3');
         this.load.audio('deadSound', 'assets/ZombieDying.mp3');
         this.load.image('sky', 'assets/sky.png');
+
         this.load.image('level2sky', 'assets/sk4y.png');
+
         this.load.image('faceBoy', 'assets/faceBoy.png');
         this.load.image('faceGirl', 'assets/faceGirl.png');
         this.load.image('ground', 'assets/platform.png');
@@ -98,9 +100,11 @@ var GameScene = new Phaser.Class({
 
         //  A simple background for our game
         background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
+
         background1 = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'level2sky');
         background1.visible = false;
         //  The platforms group contains the ground and the 2 ledges we can jump on
+
         platforms = this.physics.add.staticGroup();
 
         //  Here we create the ground.
@@ -180,10 +184,12 @@ var GameScene = new Phaser.Class({
     }
     ,
     update: function () {
+
         if (score >=150){
             background1.visible = true;
             background1.tilePositionX = iter * 300;
         }
+
         background.tilePositionX = iter * 300;
         iter += 0.03;
         counter++;

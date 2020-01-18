@@ -79,7 +79,6 @@ var CharctersScene = new Phaser.Class({
         //on click goto the game scene
         character1.on('pointerdown', function () {
             charID = 1;
-            
             game.sound.removeByKey("menuMusic");
             game.scene.stop('charactersScene');
             game.scene.start('gameScene');

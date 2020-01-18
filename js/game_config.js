@@ -1,5 +1,7 @@
 
 var config = {
+    parent: divId,
+
     type: Phaser.AUTO,
 
     physics: {
@@ -8,6 +10,9 @@ var config = {
             gravity: { y: 1000 },
             debug: false
         }
+    },
+    dom: {
+        createContainer: true
     },
     scale: {
         mode: Phaser.Scale.FIT,

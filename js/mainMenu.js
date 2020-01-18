@@ -1,3 +1,4 @@
+var isSoundPlay = false;
 var MainMenu = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -36,24 +37,28 @@ var MainMenu = new Phaser.Class({
 
     },
     create: function () {
-        
-        // Main Menu Music
-        this.sound.add('menuMusic');
+        if (!isSoundPlay) {
+            isSoundPlay = true;
+            // Main Menu Music
+            this.sound.add('menuMusic');
 
-        // Music Configurations
-        var musicConfig = {
-            mute: false,
-            volume: 1,
-            rate: 1,
-            detune: 0,
-            seek: 0,
-            loop: true,
-            delay: 0
-        };
+            // Music Configurations
+            var musicConfig = {
+                mute: false,
+                volume: 1,
+                rate: 1,
+                detune: 0,
+                seek: 0,
+                loop: true,
+                delay: 0
+            };
+            // Play Menu Music
+            this.sound.play("menuMusic", musicConfig);
 
-        // Play Menu Music
-        this.sound.play("menuMusic", musicConfig);
+        }
 
+
+      
         background = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'back');
 
         //Adding sprite to menu
@@ -117,22 +122,18 @@ var MainMenu = new Phaser.Class({
             if (gameObjects[0].name == "playBtn") {
                 game.scene.stop('mainmenu');
                 game.scene.start('charactersScene');
-            }
-
-            if (gameObjects[0].name == "howToPlayBtn") {
+            } else if (gameObjects[0].name == "howToPlayBtn") {
+                game.scene.stop('mainmenu');
                 game.scene.start('HowToPlayScene');
-            }
+            } else if (gameObjects[0].name == "badgesBtn") {
 
-            if (gameObjects[0].name == "badgesBtn") {
                 game.scene.start('badgesScene');
-            }
-
-            if (gameObjects[0].name == "creditsBtn") {
+            } else if (gameObjects[0].name == "creditsBtn") {
                 game.scene.start('creditsScene');
             }
         });
 
-       
+
         this.input.on('pointerout', function (event, gameObjects) {
 
             if (gameObjects[0].name == "playBtn") { gameObjects[0].anims.stop('playBtn', true); gameObjects[0].setFrame(0); }
