@@ -80,7 +80,6 @@ var CharctersScene = new Phaser.Class({
             return id;
         })
         character2.on('pointerdown', function () {
-            console.log(this.name);
             var id = this.name;
             game.scene.start('gameScene');
             return id;
