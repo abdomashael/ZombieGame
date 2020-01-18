@@ -386,7 +386,7 @@ function collectVictims(zombie, victim, game) {
 
 }
 function inc_attacker_speed(attacker, game) {
-    attacker.setVelocityX(-2200);
+    attacker.setVelocityX(-1080);
 }
 function inc_victim_speed(victim, game) {
     victim.setVelocityX(-500);
