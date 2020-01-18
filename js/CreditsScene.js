@@ -1,5 +1,5 @@
 var txt;
-var vy=15;
+var vy=5;
 var CreditsScene = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -24,7 +24,7 @@ var CreditsScene = new Phaser.Class({
             //addtitle
             txt = this.make.text({
                 x: 1000,
-                y: 300,
+                y: 100,
                 text: 'Credits Scene',
                 origin: { x: 0.5, y: 0.5 },
                 style: {
@@ -39,11 +39,11 @@ var CreditsScene = new Phaser.Class({
 
 
             //add names
-            Text1 = this.add.text(1000, 0, 'This Game Was Brought To By:', { fontSize: '45px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-            Text2 = this.add.text(1000, 100, 'Abd ElRahman Mashaal', { fontSize: '45px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
-            Text3 = this.add.text(1000, 200, 'Omar Akram', { fontSize: '45px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
-            Text4 = this.add.text(1000, 300, 'Menna Abdallah', { fontSize: '45px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
-            Text5 = this.add.text(1000, 400, 'Samar Ali Abd ElFatah', { fontSize: '45px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
+            Text1 = this.add.text(800, 200, 'This Game Was Brought To By:', { fontSize: '60px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
+            Text2 = this.add.text(800, 300, 'Abd ElRahman Mashaal', { fontSize: '60px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
+            Text3 = this.add.text(800, 400, 'Omar Akram', { fontSize: '60px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
+            Text4 = this.add.text(800, 500, 'Menna Abdallah', { fontSize: '60px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
+            Text5 = this.add.text(800, 600, 'Samar Ali Abd ElFatah', { fontSize: '60px', fill: '#ffd800', fontFamily: 'Courier', fontStyle: 'bold italic' });
 
              
 
@@ -72,11 +72,11 @@ var CreditsScene = new Phaser.Class({
             Text4.y += vy;
             Text5.y += vy;
             if (txt.y > 2000) {
-                Text1.y = 0;
-                Text2.y = 0;
-                Text3.y = 0;
-                Text4.y = 0;
-                Text5.y = 0;
+                Text1.y = 200;
+                Text2.y = 300;
+                Text3.y = 400;
+                Text4.y = 500;
+                Text5.y = 600;
             }
         }
 
