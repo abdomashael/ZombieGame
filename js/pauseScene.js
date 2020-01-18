@@ -16,13 +16,13 @@ var pauseScene = new Phaser.Class({
 
     create: function ()
     {
-        this.add.image(400, 300, 'resumeBtn').setAlpha(0.5);
+        resumeBtn = this.add.image(920, 540, 'resumeBtn').setInteractive();
 
-        this.input.on('pointerdown', function (event, gameObjects) {
-            if (gameObjects[0].name == "resumeBtn") { 
-                game.scene.stop();
-                game.scene.resume('gameScene');
-                }
+        resumeBtn.name = "resumeBtn";
+
+        this.input.on('pointerdown', function (event, gameObjects) { 
+            game.scene.stop('pauseScene');
+            game.scene.resume('gameScene');
         });
 
     }
