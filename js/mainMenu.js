@@ -122,14 +122,17 @@ var MainMenu = new Phaser.Class({
             }
 
             if (gameObjects[0].name == "howToPlayBtn") {
+                game.scene.stop('mainmenu');
                 game.scene.start('HowToPlayScene');
             }
 
             if (gameObjects[0].name == "badgesBtn") {
+                game.scene.stop('mainmenu');
                 game.scene.start('badgesScene');
             }
 
             if (gameObjects[0].name == "creditsBtn") {
+                game.scene.stop('mainmenu');
                 game.scene.start('creditsScene');
             }
         });
