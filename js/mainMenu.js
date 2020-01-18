@@ -120,7 +120,7 @@ var MainMenu = new Phaser.Class({
             }
 
             if (gameObjects[0].name == "howToPlayBtn") {
-                game.scene.start('howToPlayScene');
+                game.scene.start('HowToPlayScene');
             }
 
             if (gameObjects[0].name == "badgesBtn") {
