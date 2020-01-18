@@ -97,6 +97,12 @@ var GameOverScene = new Phaser.Class({
             
         });
 
+        this.input.on('pointerdown', function (event, gameObjects) {
+            if (gameObjects[0].name == "menuBtn") { 
+                game.scene.start('mainmenu');
+                }
+        });
+
         this.input.on('pointerout', function (event, gameObjects) {
 
             if (gameObjects[0].name == "tryBtn") { gameObjects[0].anims.stop('tryBtnOver', true); gameObjects[0].setFrame(0); }

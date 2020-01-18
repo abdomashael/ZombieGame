@@ -33,6 +33,7 @@ var CharctersScene = new Phaser.Class({
         character1.name = "character1";
         character2.name = "character2";
 
+        
 
         //increse the sie of the character
         character1.setScale(1);
@@ -81,13 +82,13 @@ var CharctersScene = new Phaser.Class({
             game.sound.removeByKey("menuMusic");
             game.scene.stop('charactersScene');
             game.scene.start('gameScene');
-        })
+        });
         character2.on('pointerdown', function () {
             charID = 2;
             game.sound.removeByKey("menuMusic");
             game.scene.stop('charactersScene');
             game.scene.start('gameScene');
-        })
+        });
     },
     update: function () {
         //animate the title
