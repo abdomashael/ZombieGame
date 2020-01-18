@@ -12,6 +12,12 @@ var zombieCountText;
 var zombieCount;
 var flag = 0;
 
+var p50 =false;
+var p100 =false;
+var p500 =false;
+var p1000 =false;
+
+
 var mouseLeftDown = false;
 
 var GameScene = new Phaser.Class({
@@ -285,23 +291,27 @@ var GameScene = new Phaser.Class({
         }
         );
         
-        if(score>=1000)
+        if(score>=1000 && !p1000)
         {
+            p1000=true;
             pt1000 = this.add.image(1500,90, 'pt1000');
             pt1000.setScale(0.2);
         }
-        else if(score>=500)
+        else if(score>=500 && !p500)
         {
+            p500=true;
             pt500 = this.add.image(1600,90, 'pt500');
             pt500.setScale(0.2);
         }
-        else if(score>=100)
+        else if(score>=100 && !p100)
         {
+            p100=true;
             pt100 = this.add.image(1700,90, 'pt100');
             pt100.setScale(0.2);
         }
-        else if(score>=50)
+        else if(score>=50 && !p50)
         {
+            p50=true;
             pt50 = this.add.image(1800,90, 'pt50');
             pt50.setScale(0.2);
         }
