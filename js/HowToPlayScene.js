@@ -84,11 +84,11 @@ var HowToPlayScene = new Phaser.Class({
         });
         //add the paragraphs
         Texth = this.add.text(-2700, 200, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Texth2 = this.add.text(0, -800, 'All you have to do is that Just eat some victims to gain more zombie friends', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Texth2 = this.add.text(0, -600, 'All you have to do is that Just eat some victims to gain more zombie friends', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
         Textup = this.add.text(-2700, 400, 'First you just need to click on space or the up buttons to jump to avoid attackers', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textattacker = this.add.text(0, -800, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Textattacker = this.add.text(0, -600, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
         Textatsewer = this.add.text(-2700, 600, 'The last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textatfinally = this.add.text(0, -800, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
+        Textatfinally = this.add.text(0, -600, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
         
         //making the animation if the menu button
         backbtn.on('pointerover', function () {
