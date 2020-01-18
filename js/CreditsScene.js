@@ -59,7 +59,7 @@ var CreditsScene = new Phaser.Class({
             }),
 
 
-            menubtn.on('pointerdown', function () {
+            menubtn.input.on('pointerdown', function () {
                 console.log("heloo");
                 game.scene.start('mainmenu');
             });
