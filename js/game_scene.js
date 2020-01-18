@@ -249,7 +249,7 @@ var GameScene = new Phaser.Class({
             sewer.name = 'sewer';
             if (score >= 150) {
                 inc_sewer_speed(sewer, game);
-                sewer.anims.msPerFrame = 60;
+                sewer.anims.msPerFrame = 80;
             }
             game.physics.add.collider(sewer, platforms);
 
