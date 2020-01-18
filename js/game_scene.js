@@ -382,6 +382,7 @@ var GameScene = new Phaser.Class({
 
         }
 
+
     }
 
 
@@ -404,6 +405,7 @@ function collectVictims(zombie, victim, game) {
 
     //  Add and update the score
     score += 10;
+    //Level2(score);
     scoreText.setText('Score: ' + score);
 
     addZombie();

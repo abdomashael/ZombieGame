@@ -20,6 +20,7 @@ var config = {
         height: 1080,
     },
 
+
     scene: [MainMenu,CharctersScene,HowToPlayScene,CreditsScene,GameScene, GameOverScene,pauseScene],
 };
 var game = new Phaser.Game(config);

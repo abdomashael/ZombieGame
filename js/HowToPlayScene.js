@@ -5,7 +5,7 @@ var Textattacker;
 var Textatsewer;
 var Textatfinally;
 vx = 5;
-vy = 5;
+vy = 2;
 var flag = 0;
 var HowToPlayScene = new Phaser.Class({
 
