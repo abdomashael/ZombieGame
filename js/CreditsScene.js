@@ -30,7 +30,7 @@ var CreditsScene = new Phaser.Class({
             txt = this.make.text({
                 x: 1000,
                 y: 100,
-                text: 'Credits Scene',
+                text: 'Credits',
                 origin: { x: 0.5, y: 0.5 },
                 style: {
                     font: 'bold 80px Algerian',
