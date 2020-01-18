@@ -314,16 +314,6 @@ var GameScene = new Phaser.Class({
 
         }
 
-        function Level2(Score) {
-            if (Score == 150) {
-                background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'level2sky');
-                child.setVelocityY(-500);
-                sewer.setVelocityX(-242);
-                attacker.setVelocityX(-400);
-                victim.setVelocityX(-400);
-            }
-        }
-
 
     }
 
@@ -366,4 +356,17 @@ function collectVictims(zombie, victim, game) {
         zombies.add(newzombie);
 
     }
+
+
+
+    function Level2(Score) {
+        if (Score == 150) {
+            background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'level2sky');
+            child.setVelocityY(-500);
+            sewer.setVelocityX(-242);
+            attacker.setVelocityX(-400);
+            victim.setVelocityX(-400);
+        }
+    }
+
 }
