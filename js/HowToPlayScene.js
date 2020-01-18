@@ -5,7 +5,8 @@ var Textattacker;
 var Textatsewer;
 var Textatfinally;
 vx = 5;
-vy = 5; 
+vy = 5;
+var flag = 0;
 var HowToPlayScene = new Phaser.Class({
 
     Extends: Phaser.Scene,
@@ -83,54 +84,93 @@ var HowToPlayScene = new Phaser.Class({
             }
         });
         //add the paragraphs
-        Texth = this.add.text(-2700, 200, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Texth2 = this.add.text(0, -600, 'All you have to do is that Just eat some victims to gain more zombie friends', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textup = this.add.text(-2700, 400, 'First you just need to click on space or the up buttons to jump to avoid attackers', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textattacker = this.add.text(0, -600, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textatsewer = this.add.text(-2700, 600, 'The last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        Textatfinally = this.add.text(0, -600, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '43px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
-        
+        Texth = this.add.text(0, 200, 'Hello to the guide of our game we are pleased you are here and now let us start', { fontSize: '40px', fill: '#ffff', fontFamily: 'Arial Black', fontStyle: 'bold italic' });
+        Texth2 = this.add.text(0, 300, 'All you have to do is that Just eat some victims to gain more zombie friends', { fontSize: '40px', fill: '#ffff', fontFamily: 'Arial Black', fontStyle: 'bold italic' });
+        Textup = this.add.text(0, 400, 'First you just need to click on space or the up buttons to jump to avoid attackers', { fontSize: '40px', fill: '#ffff', fontFamily: 'Arial Black', fontStyle: 'bold italic' });
+        Textattacker = this.add.text(0, 500, 'Please watch out from this zombie eater plant or you will lose on of your loyal friends', { fontSize: '40px', fill: '#ffff', fontFamily: 'Arial Black', fontStyle: 'bold italic' });
+        Textatsewer = this.add.text(0, 600, 'The last thing we want to tell you is that if you fell in the sewer you will lose', { fontSize: '40px', fill: '#ffff', fontFamily: 'Arial Black', fontStyle: 'bold italic' });
+        Textatfinally = this.add.text(0, 700, 'We hope you enjoy our game and We wish you the best of luck beacuse you will need it', { fontSize: '40px', fill: '#ffff', fontFamily: 'Arial Black', fontStyle: 'bold italic' });
+
         //making the animation if the menu button
         backbtn.on('pointerover', function () {
             backbtn.anims.play('menubtnchange', true);
         }),
-       
-        backbtn.on('pointerout', function () {
-            backbtn.anims.stop('menubtnchange', true);
-            backbtn.setFrame(0);
-        }),
-        backbtn.on('pointerdown', function () {
-            console.log("heloo");
-            game.scene.start('mainmenu');
-        })
+
+            backbtn.on('pointerout', function () {
+                backbtn.anims.stop('menubtnchange', true);
+                backbtn.setFrame(0);
+            }),
+            backbtn.on('pointerdown', function () {
+                console.log("heloo");
+                game.scene.start('mainmenu');
+            })
     },
 
     update: function () {
-        Texth.x+=vx;
-        if(Texth.x > game.config.width)
-            {
-                Texth2.y += vy;
 
-            }
-            if(Texth2.y > game.config.height)
-            {
-                Textup.x += vx;
+        
+        //to animate the text
+        if (flag == 0) {
+        Texth.y += vy;
+            Texth2.y += vy;
+            Textup.y += vy;
+            Textattacker.y += vy;
+            Textatsewer.y += vy;
+            Textatfinally.y += vy;
+        }
 
-            }
-            if(Textup.x > game.config.width)
-            {
-                Textattacker.y += vy;
 
-            }
-            if(Textattacker.y  > game.config.height)
-            {
-                Textatsewer.x += vx;
 
-            }
-            if(Textattacker.y  > game.config.height)
-            {
-                Textatfinally.y += vy;
+        //to stop the animation of the text
+        if (Texth.y > 1070) {
+            flag = 1;
+            Texth.y = 200;
+            Texth2.y = 300;
+            Textup.y = 400;
+            Textattacker.y = 500;
+            Textatsewer.y = 600;
+            Textatfinally.y = 700;
+        }
+        /* if(Texth.x > game.config.width)
+             {
+                 Texth2.y += vy;
+ 
+             }
+             if(Texth2.y > game.config.height)
+             {
+                 Textup.x += vx;
+ 
+             }
+             if(Textup.x > game.config.width)
+             {
+                 Textattacker.y += vy;
+ 
+             }
+             if(Textattacker.y  > game.config.height)
+             {
+                 Textatsewer.x += vx;
+ 
+             }
+             if(Textatsewer.x   > game.config.width)
+             {
+                 Textatfinally.y += vy;
+ 
+             }
+             if(Textatfinally.y   > game.config.height)
+             {
+                 Texth.x =0;
+                 Texth.y=200;
+                 Texth2.x =0;
+                 Texth2.y=300;
+                 Textup.x =0;
+                 Textup.y=400;
+                 Textattacker.x =0;
+                 Textattacker.y=500;
+                 Textatsewer.x =0;
+                 Textatsewer.y=600;
+                 Textatfinally.x =0;
+                 Textatfinally.y=700;
+             }*/
 
-            }
-     }
+    }
 });
