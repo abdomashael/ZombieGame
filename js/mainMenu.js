@@ -1,6 +1,3 @@
-
-
-
 var MainMenu = new Phaser.Class({
 
     Extends: Phaser.Scene,
