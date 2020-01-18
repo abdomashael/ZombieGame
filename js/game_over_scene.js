@@ -57,13 +57,20 @@ var GameOverScene = new Phaser.Class({
         var sp = this.add.sprite(1440, 850, 'tryBtn').setInteractive();
         sp.name = "tryBtn";
 
-        var playScore = this.add.text(725,800,'Your Score: '+score, { fontSize: '50px',fontFamily: 'Courier', fontStyle: 'bold italic', fill: '#FFF333' });
+        var playScore = this.add.text(725,900,'Your Score: '+score, { fontSize: '50px',fontFamily: 'Courier', fontStyle: 'bold italic', fill: '#FFF333' });
 
+        console.log(localStorage['abdo']);
 
-        //this is for badges
-        // var awards;
-        //awards = this.add.image(800 ,950);
+        if(localStorage['abdo'] ==undefined){
+            localStorage['abdo']=score;
+            if(score>0){
+                this.add.text(500,950,'Great this is your highest Scooooore... ', { fontSize: '50px',fontFamily: 'Courier', fontStyle: 'bold italic', fill: '#FFF333' });
+            }
+        }else if (localStorage['abdo']<score){
+            localStorage['abdo']=score;
+            this.add.text(450,950,'Great this is your highest Scooooore... ', { fontSize: '50px',fontFamily: 'Courier', fontStyle: 'bold italic', fill: '#FFF333' });
 
+        }
 
         sp = this.add.sprite(440, 850, 'menuBtn').setInteractive();
         sp.name = "menuBtn";
