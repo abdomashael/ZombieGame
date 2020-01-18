@@ -10,10 +10,6 @@ var gameOver = false;
 var scoreText;
 var zombieCountText;
 var zombieCount;
-var sewer;
-var attacker;
-var victim;
-var childZombie;
 
 var mouseLeftDown = false;
 
@@ -233,8 +229,7 @@ var GameScene = new Phaser.Class({
 
 
         function addSewer(game, scaleX, scaleY) {
-            //var sewer = game.physics.add.sprite(2100, 850, 'sewer').setScale(scaleX, scaleY);
-            sewer = game.physics.add.sprite(2100, 850, 'sewer').setScale(scaleX, scaleY);
+            var sewer = game.physics.add.sprite(2100, 850, 'sewer').setScale(scaleX, scaleY);
             sewer.setVelocityX(-442);
             sewer.name = 'sewer';
             game.physics.add.collider(sewer, platforms);
@@ -248,8 +243,7 @@ var GameScene = new Phaser.Class({
 
         function addAttacker(game, attackerSrc, scaleX, scaleY) {
             console.log(sewer)
-            //var attacker = game.physics.add.sprite(2100, 850, attackerSrc).setScale(scaleX, scaleY);
-            attacker = game.physics.add.sprite(2100, 850, attackerSrc).setScale(scaleX, scaleY);
+            var attacker = game.physics.add.sprite(2100, 850, attackerSrc).setScale(scaleX, scaleY);
             attacker.anims.play('attacker', true);
             game.physics.add.collider(attacker, platforms);
             attacker.setVelocityX(-700);
@@ -308,8 +302,7 @@ var GameScene = new Phaser.Class({
 
 
         function addVictim(game, type, scaleX, scaleY) {
-            //var victim = game.physics.add.sprite(2100, 850, type).setScale(scaleX, scaleY);
-            victim = game.physics.add.sprite(2100, 850, type).setScale(scaleX, scaleY);
+            var victim = game.physics.add.sprite(2100, 850, type).setScale(scaleX, scaleY);
             victim.anims.play(type, true);
             victim.setVelocityX(-400);
             game.physics.add.collider(victim, platforms);
@@ -366,7 +359,7 @@ function collectVictims(zombie, victim, game) {
 
 
 
-        this.levlgame(game);
+        //this.levlgame(game);
 
     }
 
