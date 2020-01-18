@@ -44,7 +44,7 @@ var CreditsScene = new Phaser.Class({
 
 
             //add names
-            Text1 = this.add.text(500, 200, 'This Game Was Brought To By:', { fontSize: '60px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
+            Text1 = this.add.text(500, 200, 'This Game Was Brought To You By:', { fontSize: '60px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
             Text2 = this.add.text(500, 300, 'Abd ElRahman Mashaal', { fontSize: '60px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
             Text3 = this.add.text(500, 400, 'Omar Akram', { fontSize: '60px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
             Text4 = this.add.text(500, 500, 'Menna Abdallah', { fontSize: '60px', fill: '#ffff', fontFamily: 'Courier', fontStyle: 'bold italic' });
@@ -77,7 +77,6 @@ var CreditsScene = new Phaser.Class({
             Text4.y += vy;
             Text5.y += vy;
             if (Text1.y > 1070) {
-                Text1.x = 100;
                 Text1.y = 200;
                 Text2.y = 300;
                 Text3.y = 400;
