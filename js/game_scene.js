@@ -242,7 +242,6 @@ var GameScene = new Phaser.Class({
         }
 
         function addAttacker(game, attackerSrc, scaleX, scaleY) {
-            console.log(sewer)
             var attacker = game.physics.add.sprite(2100, 850, attackerSrc).setScale(scaleX, scaleY);
             attacker.anims.play('attacker', true);
             game.physics.add.collider(attacker, platforms);
