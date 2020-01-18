@@ -77,6 +77,7 @@ var CreditsScene = new Phaser.Class({
             Text4.y += vy;
             Text5.y += vy;
             if (Text1.y > 1070) {
+                Text5.y = 100;
                 Text1.x = 600;
                 Text1.y = 500;
                 Text2.y = 400;
