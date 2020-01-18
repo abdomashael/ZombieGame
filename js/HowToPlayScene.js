@@ -5,7 +5,7 @@ var Textattacker;
 var Textatsewer;
 var Textatfinally;
 vx = 5;
-vy = 5;
+vy = 2;
 var flag = 0;
 var HowToPlayScene = new Phaser.Class({
 
@@ -108,22 +108,19 @@ var HowToPlayScene = new Phaser.Class({
 
     update: function () {
 
-        
+
         //to animate the text
-        if (flag == 0) {
-        Texth.y += vy;
-            Texth2.y += vy;
-            Textup.y += vy;
-            Textattacker.y += vy;
-            Textatsewer.y += vy;
-            Textatfinally.y += vy;
-        }
+        Texth.y -= vy;
+        Texth2.y -= vy;
+        Textup.y -= vy;
+        Textattacker.y -= vy;
+        Textatsewer.y -= vy;
+        Textatfinally.y -= vy;
 
 
 
         //to stop the animation of the text
-        if (Texth.y > 1070) {
-            flag = 1;
+        if (Texth.y > -1080) {
             Texth.y = 200;
             Texth2.y = 300;
             Textup.y = 400;

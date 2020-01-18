@@ -266,6 +266,26 @@ var GameScene = new Phaser.Class({
             });
            
         }
+        //add Level 2
+        function Level2(){
+            if(score >= 150)
+            {
+               
+            }
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
     }
 
 
@@ -287,6 +307,7 @@ function collectVictims(zombie, victim, game) {
 
     //  Add and update the score
     score += 10;
+    //Level2(score);
     scoreText.setText('Score: ' + score);
 
     addZombie();
