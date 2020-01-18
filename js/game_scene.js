@@ -10,6 +10,7 @@ var gameOver = false;
 var scoreText;
 var zombieCountText;
 var zombieCount;
+var flag = 0;
 
 var mouseLeftDown = false;
 
@@ -30,7 +31,7 @@ var GameScene = new Phaser.Class({
         var progress = this.add.graphics();
 
         this.load.on('progress', function (value) {
-            
+
             progress.clear();
             progress.fillStyle(0x00a308, 1);
             progress.fillRect(0, 270, 1200 * value, 60);
@@ -49,6 +50,9 @@ var GameScene = new Phaser.Class({
         this.load.audio('biteSound', 'assets/ZombieBite.mp3');
         this.load.audio('deadSound', 'assets/ZombieDying.mp3');
         this.load.image('sky', 'assets/sky.png');
+
+        this.load.image('level2sky', 'assets/sk4y.png');
+
         this.load.image('faceBoy', 'assets/faceBoy.png');
         this.load.image('faceGirl', 'assets/faceGirl.png');
         this.load.image('ground', 'assets/platform.png');
@@ -100,17 +104,20 @@ var GameScene = new Phaser.Class({
         //  A simple background for our game
         background = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'sky');
 
+        background1 = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, 1920, 1080, 'level2sky');
+        background1.visible = false;
         //  The platforms group contains the ground and the 2 ledges we can jump on
+
         platforms = this.physics.add.staticGroup();
 
         //  Here we create the ground.
         //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
         platforms.create(980, 1000, 'ground');
 
-        if(charID == 1){
+        if (charID == 1) {
             this.add.image(960, 50, 'faceBoy');
         }
-        else{
+        else {
             this.add.image(960, 50, 'faceGirl');
         }
 
@@ -118,13 +125,13 @@ var GameScene = new Phaser.Class({
         // The zombie and its settings
 
         zombies = this.physics.add.group();
-        if(charID == 1 ){
-            zombie = this.physics.add.sprite(400, 450,'zombieBoy');
-            console.log("1 ??" +charID);
+        if (charID == 1) {
+            zombie = this.physics.add.sprite(400, 450, 'zombieBoy');
+            console.log("1 ??" + charID);
 
         }
-        else{
-            console.log("2 ??" +charID);
+        else {
+            console.log("2 ??" + charID);
 
             zombie = this.physics.add.sprite(400, 450, 'zombieGirl');
         }
@@ -136,13 +143,13 @@ var GameScene = new Phaser.Class({
         zombies.add(zombie);
 
         //  Our zombie animations, turning, walking left and walking right.
-        if(charID == 1){
+        if (charID == 1) {
             // All animations are created and working
             createAnimation(this, 'right', 'zombieBoy', 0, 9, 20);
             createAnimation(this, 'up', 'zombieBoy', 4, 4, 20);
             createAnimation(this, 'dead', 'deadBoy', 0, 11, 20);
         }
-        else{
+        else {
 
             // We need to create animations for girl right walking, jumping and dead Girl.
             createAnimation(this, 'right', 'zombieGirl', 0, 9, 20);
@@ -160,7 +167,7 @@ var GameScene = new Phaser.Class({
 
         //  Input Events
         cursors = this.input.keyboard.createCursorKeys();
-        
+
         this.input.on('pointerdown', function (event, gameObjects) {
             mouseLeftDown = true;
         });
@@ -170,7 +177,7 @@ var GameScene = new Phaser.Class({
         zombieCountText = this.add.text(1020, 50, zombieCount, { fontSize: '43px', fill: '#ffff' });
 
         //  Checks to see if the zombie overlaps with any of the victims, if he does call the collectStar function
-        
+
         var ESC =this.input.keyboard.addKey('ESC');  // Get key object
 
         ESC.on('down', function(event) { 
@@ -181,50 +188,94 @@ var GameScene = new Phaser.Class({
     ,
     update: function () {
 
-        background.tilePositionX = iter * 300;
-        iter += 0.03;
+        if (score >=150){
+            background1.visible = true;
+            background1.tilePositionX = iter * 300;
+            iter += 0.06;
 
-        counter++;
-
-        if (counter == 95) {
-            counter = 0;
-            // Max is our algorithm for randomising the enemy and victims
-            switch (getRandomInt(6)) {
-                case 0://boy
-                    addVictim(this, 'boy', 1.1, 1.1);
-                    break;
-
-                case 1://woman
-                    addVictim(this, 'woman', 1.8, 1.4);
-                    break;
-
-                case 2:
-                case 3:
-                    addAttacker(this, 'attacker', 2, 1.5);
-                    break;
-
-                case 4:
-                case 5:
-                    addSewer(this, 1.5, 1);
-                    break;
+            if (counter == 85) {
+                counter = 0;
+                // Max is our algorithm for randomising the enemy and victims
+                switch (getRandomInt(8)) {
+                    case 0://boy
+                        addVictim(this, 'boy', 1.1, 1.1);
+                        break;
+    
+                    case 1://woman
+                        addVictim(this, 'woman', 1.8, 1.4);
+                        break;
+    
+                    case 2:
+                    case 3:
+                    case 4:
+                        addAttacker(this, 'attacker', 2, 1.5);
+                        break;
+    
+                    case 5:
+                    case 6:
+                    case 7:
+                        addSewer(this, 1.5, 1);
+                        break;
+                }
+    
+    
             }
-
+           
+        }else{
+            background.tilePositionX = iter * 300;
+            iter += 0.03;
+            
+            if (counter == 95) {
+                counter = 0;
+                // Max is our algorithm for randomising the enemy and victims
+                switch (getRandomInt(6)) {
+                    case 0://boy
+                        addVictim(this, 'boy', 1.1, 1.1);
+                        break;
+    
+                    case 1://woman
+                        addVictim(this, 'woman', 1.8, 1.4);
+                        break;
+    
+                    case 2:
+                    case 3:
+                        addAttacker(this, 'attacker', 2, 1.5);
+                        break;
+    
+                    case 4:
+                    case 5:
+                        addSewer(this, 1.5, 1);
+                        break;
+                }
+    
+    
+            }
+            
         }
 
+        
+        counter++;
 
+        
 
 
         var speed = 700;
         zombies.children.iterate(function (child) {
-            if ((cursors.up.isDown || cursors.space.isDown ) && child.body.touching.down) {
+            if ((cursors.up.isDown || cursors.space.isDown) && child.body.touching.down) {
                 //|| mouseLeftDownmouseLeftDown = false;
                 child.setVelocityY(-speed);
             }
 
             if (child.body.touching.down) {
                 child.anims.play('right', true);
+                if (score >= 150) {
+                    child.anims.msPerFrame = 40;
+                }
             } else {
                 child.anims.play('up', true);
+                if (score >= 150) {
+                    child.anims.msPerFrame = 40;
+                }
 
             }
 
@@ -256,9 +307,13 @@ var GameScene = new Phaser.Class({
         }
 
         function addSewer(game, scaleX, scaleY) {
-            var sewer = game.physics.add.sprite(2100, 850, 'sewer').setScale(scaleX, scaleY);
-            sewer.setVelocityX(-442);
+            var sewer = game.physics.add.sprite(2100, 950, 'sewer').setScale(scaleX, scaleY);
+            sewer.setVelocityX(-530);
             sewer.name = 'sewer';
+            if (score >= 150) {
+                inc_sewer_speed(sewer, game);
+                sewer.anims.msPerFrame = 60;
+            }
             game.physics.add.collider(sewer, platforms);
 
             zombies.children.iterate(function (childZombie) {
@@ -273,8 +328,12 @@ var GameScene = new Phaser.Class({
             attacker.anims.play('attacker', true);
             game.physics.add.collider(attacker, platforms);
             attacker.setVelocityX(-700);
-            zombies.children.iterate(function (childZombie) {
+            if (score >= 150) {
+                inc_attacker_speed(attacker, game);
+                attacker.anims.msPerFrame = 60;
 
+            }
+            zombies.children.iterate(function (childZombie) {
                 game.physics.add.overlap(childZombie, attacker, function () {
                     attackerOverlap(childZombie, attacker, game, 2000)
                 }, null, game);
@@ -283,10 +342,10 @@ var GameScene = new Phaser.Class({
 
         function attackerOverlap(childZombie, attacker, game, time) {
             var deadZombie;
-            if(charID == 1 ){
+            if (charID == 1) {
                 deadZombie = game.physics.add.sprite(childZombie.x, childZombie.y, 'deadBoy').setScale(3);
             }
-            else{
+            else {
                 deadZombie = game.physics.add.sprite(childZombie.x, childZombie.y, 'deadGirl').setScale(3);
             }
 
@@ -331,6 +390,10 @@ var GameScene = new Phaser.Class({
             var victim = game.physics.add.sprite(2100, 850, type).setScale(scaleX, scaleY);
             victim.anims.play(type, true);
             victim.setVelocityX(-400);
+            if (score >= 150) {
+                inc_victim_speed(victim, game);
+                victim.anims.msPerFrame = 60;
+            }
             game.physics.add.collider(victim, platforms);
 
             zombies.children.iterate(function (childZombie) {
@@ -341,11 +404,13 @@ var GameScene = new Phaser.Class({
 
         }
 
+
     }
 
 
-
 });
+
+
 
 function collectVictims(zombie, victim, game) {
 
@@ -362,6 +427,7 @@ function collectVictims(zombie, victim, game) {
 
     //  Add and update the score
     score += 10;
+    //Level2(score);
     scoreText.setText('Score: ' + score);
 
     addZombie();
@@ -370,15 +436,27 @@ function collectVictims(zombie, victim, game) {
         ++zombieCount;
         zombieCountText.setText(zombieCount);
         var newzombie;
-        if(charID == 1){
+        if (charID == 1) {
             newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombieBoy');
         }
-        else{
+        else {
             newzombie = game.physics.add.sprite(400 - newZombiePlace, 880, 'zombieGirl');
         }
         newzombie.anims.play('right', true);
         game.physics.add.collider(newzombie, platforms);
         zombies.add(newzombie);
-        
+
     }
+
+
 }
+function inc_attacker_speed(attacker, game) {
+    attacker.setVelocityX(-800);
+}
+function inc_victim_speed(victim, game) {
+    victim.setVelocityX(-300);
+}
+function inc_sewer_speed(sewer, game) {
+    sewer.setScale(2,1);
+}
+
