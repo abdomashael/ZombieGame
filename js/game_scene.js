@@ -188,37 +188,72 @@ var GameScene = new Phaser.Class({
         if (score >=150){
             background1.visible = true;
             background1.tilePositionX = iter * 300;
+            iter += 0.06;
+
+            if (counter == 85) {
+                counter = 0;
+                // Max is our algorithm for randomising the enemy and victims
+                switch (getRandomInt(8)) {
+                    case 0://boy
+                        addVictim(this, 'boy', 1.1, 1.1);
+                        break;
+    
+                    case 1://woman
+                        addVictim(this, 'woman', 1.8, 1.4);
+                        break;
+    
+                    case 2:
+                    case 3:
+                    case 4:
+                        addAttacker(this, 'attacker', 2, 1.5);
+                        break;
+    
+                    case 5:
+                    case 6:
+                    case 7:
+                        addSewer(this, 1.5, 1);
+                        break;
+                }
+    
+    
+            }
+           
+        }else{
+            background.tilePositionX = iter * 300;
+            iter += 0.03;
+            
+            if (counter == 95) {
+                counter = 0;
+                // Max is our algorithm for randomising the enemy and victims
+                switch (getRandomInt(6)) {
+                    case 0://boy
+                        addVictim(this, 'boy', 1.1, 1.1);
+                        break;
+    
+                    case 1://woman
+                        addVictim(this, 'woman', 1.8, 1.4);
+                        break;
+    
+                    case 2:
+                    case 3:
+                        addAttacker(this, 'attacker', 2, 1.5);
+                        break;
+    
+                    case 4:
+                    case 5:
+                        addSewer(this, 1.5, 1);
+                        break;
+                }
+    
+    
+            }
+            
         }
 
-        background.tilePositionX = iter * 300;
-        iter += 0.03;
+        
         counter++;
 
-        if (counter == 95) {
-            counter = 0;
-            // Max is our algorithm for randomising the enemy and victims
-            switch (getRandomInt(6)) {
-                case 0://boy
-                    addVictim(this, 'boy', 1.1, 1.1);
-                    break;
-
-                case 1://woman
-                    addVictim(this, 'woman', 1.8, 1.4);
-                    break;
-
-                case 2:
-                case 3:
-                    addAttacker(this, 'attacker', 2, 1.5);
-                    break;
-
-                case 4:
-                case 5:
-                    addSewer(this, 1.5, 1);
-                    break;
-            }
-
-
-        }
+        
 
 
         var speed = 700;
@@ -250,8 +285,8 @@ var GameScene = new Phaser.Class({
 
 
         function addSewer(game, scaleX, scaleY) {
-            var sewer = game.physics.add.sprite(2100, 850, 'sewer').setScale(scaleX, scaleY);
-            sewer.setVelocityX(-442);
+            var sewer = game.physics.add.sprite(2100, 950, 'sewer').setScale(scaleX, scaleY);
+            sewer.setVelocityX(-530);
             sewer.name = 'sewer';
             if (score >= 150) {
                 inc_sewer_speed(sewer, game);
@@ -392,12 +427,12 @@ function collectVictims(zombie, victim, game) {
 
 }
 function inc_attacker_speed(attacker, game) {
-    attacker.setVelocityX(-2200);
+    attacker.setVelocityX(-800);
 }
 function inc_victim_speed(victim, game) {
-    victim.setVelocityX(-500);
+    victim.setVelocityX(-300);
 }
 function inc_sewer_speed(sewer, game) {
-    sewer.setVelocityX(-2000);
+    sewer.setScale(2,1);
 }
 
