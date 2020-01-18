@@ -12,7 +12,6 @@ var zombieCountText;
 var zombieCount;
 var flag = 0;
 
-
 var mouseLeftDown = false;
 
 var GameScene = new Phaser.Class({
@@ -65,6 +64,10 @@ var GameScene = new Phaser.Class({
         this.load.spritesheet('deadBoy', 'assets/deadBoy.png', { frameWidth: 75, frameHeight: 61 });
         this.load.spritesheet('deadGirl', 'assets/deadGirl.png', { frameWidth: 75, frameHeight: 68 });
         this.load.spritesheet('sewer', 'assets/sewer.png', { frameWidth: 123, frameHeight: 49 });
+        this.load.image('pt50', 'assets/50.png');
+        this.load.image('pt100', 'assets/100.png');
+        this.load.image('pt500', 'assets/500.png');
+        this.load.image('pt1000', 'assets/1000.png');
 
     }
     ,
@@ -281,8 +284,27 @@ var GameScene = new Phaser.Class({
 
         }
         );
-
-
+        
+        if(score>=1000)
+        {
+            pt1000 = this.add.image(1500,90, 'pt1000');
+            pt1000.setScale(0.2);
+        }
+        else if(score>=500)
+        {
+            pt500 = this.add.image(1600,90, 'pt500');
+            pt500.setScale(0.2);
+        }
+        else if(score>=100)
+        {
+            pt100 = this.add.image(1700,90, 'pt100');
+            pt100.setScale(0.2);
+        }
+        else if(score>=50)
+        {
+            pt50 = this.add.image(1800,90, 'pt50');
+            pt50.setScale(0.2);
+        }
 
         function addSewer(game, scaleX, scaleY) {
             var sewer = game.physics.add.sprite(2100, 950, 'sewer').setScale(scaleX, scaleY);
